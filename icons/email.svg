@@ -1,12 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
-  <!-- Subtle Outer Hairline Rim -->
-  <circle cx="50" cy="50" r="49" fill="#1C1917"/>
-  <!-- Gold Ring -->
-  <circle cx="50" cy="50" r="48" fill="#D4AF37"/>
-  <!-- Inner Hairline Border -->
-  <circle cx="50" cy="50" r="39.5" fill="#1C1917"/>
-  <!-- Obsidian Center Disc -->
-  <circle cx="50" cy="50" r="38.5" fill="#131110"/>
-  <!-- Pure White Envelope Glyph -->
-  <path d="M68 33H32c-2.8 0-5 2.2-5 5v24c0 2.8 2.2 5 5 5h36c2.8 0 5-2.2 5-5V38c0-2.8-2.2-5-5-5zm-2.4 6L50 51.5 34.4 39h31.2zM33 61V42.8l15.8 12.6c.7.5 1.7.5 2.4 0L67 42.8V61H33z" fill="#FFFFFF"/>
+  <circle cx="50" cy="50" r="48" fill="#111111"/>
+  <circle cx="50" cy="50" r="45" fill="#D4AF37"/>
+  <circle cx="50" cy="50" r="39" fill="#111111"/>
+  
+  <g transform="translate(50, 50) scale(2.25) translate(-12, -12)">
+    <path fill="#FFFFFF" d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+  </g>
 </svg>
