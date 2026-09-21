@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <!-- Obsidian Ground Disc -->
+  <circle cx="50" cy="50" r="48" fill="#131110"/>
+  <!-- Concentric Metallic Gold Ring -->
+  <circle cx="50" cy="50" r="44" fill="none" stroke="#D4AF37" stroke-width="3.5"/>
+
+  <!-- Pure White Centered QR Glyph -->
+  <g fill="#FFFFFF">
+    <!-- Top-Left Finder Eye (Outer Ring + Core, Black Gap) -->
+    <path d="M26 26h18v18H26V26zm3.5 3.5v11h11v-11h-11z"/>
+    <rect x="32" y="32" width="6" height="6" rx="0.5"/>
+
+    <!-- Top-Right Finder Eye (Outer Ring + Core, Black Gap) -->
+    <path d="M56 26h18v18H56V26zm3.5 3.5v11h11v-11h-11z"/>
+    <rect x="62" y="32" width="6" height="6" rx="0.5"/>
+
+    <!-- Bottom-Left Finder Eye (Outer Ring + Core, Black Gap) -->
+    <path d="M26 56h18v18H26V56zm3.5 3.5v11h11v-11h-11z"/>
+    <rect x="32" y="62" width="6" height="6" rx="0.5"/>
+
+    <!-- Center & Alignment Data Modules -->
+    <rect x="47.5" y="26" width="5" height="5" rx="0.5"/>
+    <rect x="47.5" y="34" width="5" height="8" rx="0.5"/>
+    <rect x="47.5" y="47.5" width="5" height="5" rx="0.5"/>
+    <rect x="26" y="47.5" width="8" height="5" rx="0.5"/>
+    <rect x="37" y="47.5" width="7" height="5" rx="0.5"/>
+    <rect x="56" y="47.5" width="5" height="5" rx="0.5"/>
+    <rect x="64" y="47.5" width="10" height="5" rx="0.5"/>
+    <rect x="47.5" y="56" width="5" height="8" rx="0.5"/>
+    <rect x="47.5" y="67" width="5" height="7" rx="0.5"/>
+    <rect x="56" y="56" width="5" height="18" rx="0.5"/>
+    <rect x="64" y="56" width="10" height="5" rx="0.5"/>
+    <rect x="64" y="64" width="10" height="10" rx="0.5"/>
+  </g>
+</svg>

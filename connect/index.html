@@ -6,9 +6,7 @@
   <title>Connect | Jesus Gomez Polo | Phi Atlas Advisory</title>
   <meta name="description" content="Digital business card and direct advisory consultation scheduling for Jesus Gomez Polo, Licensed Real Estate Sales Associate with Brokers, LLC.">
 
-  <!-- ========================================== -->
-  <!-- FAVICON & PLATFORM ASSET SUITE             -->
-  <!-- ========================================== -->
+  <!-- FAVICON & PLATFORM ASSET SUITE -->
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -17,9 +15,6 @@
   <link rel="manifest" href="/site.webmanifest">
 
   <style>
-    /* ========================================== */
-    /* THEME SYSTEM (LIGHT DEFAULT + AUTO DARK)   */
-    /* ========================================== */
     :root {
       --color-gold: #D4AF37;
       --color-ochre: #9C784A;
@@ -78,7 +73,6 @@
       width: 100%;
     }
 
-    /* Top Return Link */
     .nav-back {
       display: inline-flex;
       align-items: center;
@@ -97,7 +91,6 @@
       opacity: 0.8;
     }
 
-    /* BizCard Surface */
     .bizcard {
       background-color: var(--bg-surface);
       border: 1px solid var(--border-subtle);
@@ -107,7 +100,6 @@
       margin-bottom: 24px;
     }
 
-    /* Header Profile Banner */
     .bizcard-header {
       background: linear-gradient(135deg, #1C1917 0%, #292524 100%);
       padding: 36px 20px 24px;
@@ -154,7 +146,6 @@
       margin-top: 4px;
     }
 
-    /* Quick Actions */
     .quick-actions {
       display: flex;
       justify-content: space-around;
@@ -172,6 +163,10 @@
       color: var(--text-secondary);
       font-size: 11px;
       font-weight: 600;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
     }
 
     .action-circle-icon {
@@ -187,7 +182,6 @@
       transform: translateY(-2px) scale(1.04);
     }
 
-    /* Primary CTA Button */
     .cta-container {
       padding: 16px 20px;
       background-color: var(--bg-surface);
@@ -216,7 +210,6 @@
       transform: translateY(-1px);
     }
 
-    /* Structured Link List */
     .links-list {
       padding: 16px 20px;
       display: flex;
@@ -275,7 +268,6 @@
       margin-left: 8px;
     }
 
-    /* Google Calendar Embed Section */
     .calendar-card {
       background-color: var(--bg-surface);
       border: 1px solid var(--border-subtle);
@@ -316,7 +308,6 @@
       border: none;
     }
 
-    /* Dedicated QR Code Share Card */
     .qr-share-card {
       background-color: var(--bg-surface);
       border: 1px solid var(--border-subtle);
@@ -363,7 +354,90 @@
       max-width: 320px;
     }
 
-    /* Statutory FREC Footer */
+    /* Floating QR Modal */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(19, 17, 16, 0.85);
+      backdrop-filter: blur(6px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.25s ease, visibility 0.25s ease;
+      padding: 20px;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-window {
+      background-color: var(--bg-surface);
+      border: 1.5px solid var(--color-gold);
+      border-radius: 16px;
+      padding: 32px 24px 28px;
+      max-width: 340px;
+      width: 100%;
+      text-align: center;
+      position: relative;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+      transform: scale(0.92);
+      transition: transform 0.25s ease;
+    }
+
+    .modal-overlay.active .modal-window {
+      transform: scale(1);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 12px;
+      right: 14px;
+      background: none;
+      border: none;
+      font-size: 24px;
+      line-height: 1;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: color 0.2s ease;
+    }
+
+    .modal-close:hover {
+      color: var(--color-gold);
+    }
+
+    .modal-qr-frame {
+      width: 200px;
+      height: 200px;
+      margin: 0 auto 18px;
+      padding: 10px;
+      background-color: #FFFFFF;
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+    }
+
+    .modal-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      margin-bottom: 6px;
+    }
+
+    .modal-sub {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
     footer {
       border-top: 1px solid var(--border-subtle);
       padding-top: 24px;
@@ -384,8 +458,6 @@
 <body>
 
   <div class="card-container">
-    
-    <!-- Top Return Link -->
     <a href="/" class="nav-back">← Back to Phi Atlas Advisory</a>
 
     <!-- THE DIGITAL BIZCARD -->
@@ -419,10 +491,10 @@
           <img src="/icons/calendar.svg" alt="Book" class="action-circle-icon">
           <span>Book</span>
         </a>
-        <a href="#qr-section" class="action-btn">
-          <img src="/icons/qr-connect.png" alt="Share QR" class="action-circle-icon" style="border: 1px solid var(--color-gold); padding: 4px; background: #fff;">
+        <button type="button" class="action-btn" id="open-qr-btn">
+          <img src="/icons/qr.svg" alt="Show QR" class="action-circle-icon">
           <span>QR</span>
-        </a>
+        </button>
       </div>
 
       <!-- Integrated VCF Contact Download -->
@@ -434,10 +506,8 @@
         </a>
       </div>
 
-      <!-- Structured Information Links (SVGs) -->
+      <!-- Structured Information Links -->
       <div class="links-list">
-        
-        <!-- Broker Office Location -->
         <a href="https://maps.google.com/?q=20200+West+Dixie+Hwy+Suite+G07+Aventura+FL+33180" target="_blank" rel="noopener" class="biz-link-row">
           <div class="link-left">
             <img src="/icons/address.svg" alt="Location" class="link-badge-icon">
@@ -449,7 +519,6 @@
           <span class="link-arrow">→</span>
         </a>
 
-        <!-- Office Phone -->
         <a href="tel:+19543841616" class="biz-link-row">
           <div class="link-left">
             <img src="/icons/phone.svg" alt="Phone" class="link-badge-icon">
@@ -461,7 +530,6 @@
           <span class="link-arrow">→</span>
         </a>
 
-        <!-- WhatsApp Direct -->
         <a href="https://wa.me/16577662225" target="_blank" rel="noopener" class="biz-link-row">
           <div class="link-left">
             <img src="/icons/wa.svg" alt="WhatsApp" class="link-badge-icon">
@@ -473,7 +541,6 @@
           <span class="link-arrow">→</span>
         </a>
 
-        <!-- Main Advisory Website -->
         <a href="https://phiatlas.com" class="biz-link-row">
           <div class="link-left">
             <img src="/icons/web.svg" alt="Website" class="link-badge-icon">
@@ -485,7 +552,6 @@
           <span class="link-arrow">→</span>
         </a>
 
-        <!-- Instagram -->
         <a href="https://instagram.com/jesusgomezpolo" target="_blank" rel="noopener" class="biz-link-row">
           <div class="link-left">
             <img src="/icons/ig.svg" alt="Instagram" class="link-badge-icon">
@@ -497,7 +563,6 @@
           <span class="link-arrow">→</span>
         </a>
 
-        <!-- Facebook Page -->
         <a href="https://www.facebook.com/jegomezproperties" target="_blank" rel="noopener" class="biz-link-row">
           <div class="link-left">
             <img src="/icons/fb.svg" alt="Facebook" class="link-badge-icon">
@@ -509,7 +574,6 @@
           <span class="link-arrow">→</span>
         </a>
 
-        <!-- TikTok -->
         <a href="https://www.tiktok.com/@jegomezproperties" target="_blank" rel="noopener" class="biz-link-row">
           <div class="link-left">
             <img src="/icons/tt.svg" alt="TikTok" class="link-badge-icon">
@@ -521,7 +585,6 @@
           <span class="link-arrow">→</span>
         </a>
 
-        <!-- X (formerly Twitter) -->
         <a href="https://x.com/JeGomezReal" target="_blank" rel="noopener" class="biz-link-row">
           <div class="link-left">
             <img src="/icons/X.svg" alt="X" class="link-badge-icon">
@@ -533,7 +596,6 @@
           <span class="link-arrow">→</span>
         </a>
 
-        <!-- Broker's Corporate Website -->
         <a href="http://brokersllc.com" target="_blank" rel="noopener" class="biz-link-row">
           <div class="link-left">
             <img src="/icons/web.svg" alt="Broker's Corporate Site" class="link-badge-icon">
@@ -544,7 +606,6 @@
           </div>
           <span class="link-arrow">→</span>
         </a>
-
       </div>
     </div>
 
@@ -561,12 +622,12 @@
       </div>
     </div>
 
-    <!-- DEDICATED QR CODE SHARE CARD -->
+    <!-- INLINE QR CODE SHARE CARD -->
     <div id="qr-section" class="qr-share-card">
       <div class="qr-frame-box">
         <img src="/icons/qr-connect.png" alt="Scan to Connect" class="qr-image">
       </div>
-      <h3 class="qr-title">Scan to Exchange & Save Contact</h3>
+      <h3 class="qr-title">Scan to Exchange &amp; Save Contact</h3>
       <p class="qr-subtitle">Point your phone camera to open and save this digital advisory card directly to your contacts.</p>
     </div>
 
@@ -581,6 +642,46 @@
     </footer>
 
   </div>
+
+  <!-- FLOATING LUXURY MODAL -->
+  <div class="modal-overlay" id="qr-modal" role="dialog" aria-modal="true" aria-labelledby="modal-qr-title">
+    <div class="modal-window">
+      <button type="button" class="modal-close" id="close-qr-btn" aria-label="Close modal">&times;</button>
+      <div class="modal-qr-frame">
+        <img src="/icons/qr-connect.png" alt="Scan to Connect" class="qr-image">
+      </div>
+      <h3 class="modal-title" id="modal-qr-title">Direct Connection</h3>
+      <p class="modal-sub">Scan with any camera to instantly load and save Jesus Gomez Polo's advisory card.</p>
+    </div>
+  </div>
+
+  <script>
+    const qrBtn = document.getElementById('open-qr-btn');
+    const qrModal = document.getElementById('qr-modal');
+    const closeBtn = document.getElementById('close-qr-btn');
+
+    function openModal() {
+      qrModal.classList.add('active');
+    }
+
+    function closeModal() {
+      qrModal.classList.remove('active');
+    }
+
+    qrBtn.addEventListener('click', openModal);
+    closeBtn.addEventListener('click', closeModal);
+
+    // Close when clicking outside the window or pressing Escape
+    qrModal.addEventListener('click', (e) => {
+      if (e.target === qrModal) closeModal();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && qrModal.classList.contains('active')) {
+        closeModal();
+      }
+    });
+  </script>
 
 </body>
 </html>
