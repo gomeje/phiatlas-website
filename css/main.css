@@ -1,0 +1,347 @@
+/* ==========================================================================
+   Phi Atlas Advisory - Core Design Tokens & Shared Styles
+   ========================================================================== */
+
+:root {
+  /* Palette Tokens */
+  --color-gold: #D4AF37;
+  --color-ochre: #9C784A;
+
+  /* Light Theme Defaults */
+  --bg-canvas: #FAFAF9;
+  --bg-surface: #FFFFFF;
+  --border-subtle: #E7E5E4;
+  --border-card: #D6D3D1;
+  --text-primary: #1C1917;
+  --text-secondary: #44403C;
+  --text-muted: #78716C;
+  --logo-primary: #1C1917;
+  --btn-outline-border: #D6D3D1;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-canvas: #131110;
+    --bg-surface: #1C1917;
+    --border-subtle: #292524;
+    --border-card: #44403C;
+    --text-primary: #F5F5F4;
+    --text-secondary: #D6D3D1;
+    --text-muted: #A8A29E;
+    --logo-primary: #FFFFFF;
+    --btn-outline-border: #44403C;
+  }
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  background-color: var(--bg-canvas);
+  color: var(--text-primary);
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.container {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 48px 24px 40px;
+  flex: 1;
+  width: 100%;
+}
+
+/* Header & Identity Lockup */
+header {
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: 24px;
+  margin-bottom: 40px;
+}
+
+.header-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.brand-identity {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  text-decoration: none;
+}
+
+.brand-mark {
+  width: 52px;
+  height: 52px;
+  flex-shrink: 0;
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-title {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 1.8px;
+  color: var(--text-primary);
+  text-transform: uppercase;
+  line-height: 1.15;
+}
+
+.brand-subtitle {
+  font-size: 10.5px;
+  letter-spacing: 1.8px;
+  color: var(--color-gold);
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-top: 4px;
+}
+
+/* Nav Menu Links */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  list-style: none;
+}
+
+.nav-link {
+  font-size: 13.5px;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--color-gold);
+}
+
+.broker-header-lockup {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  border-left: 1px solid var(--border-subtle);
+  padding-left: 20px;
+}
+
+.broker-header-label {
+  font-size: 9px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.broker-logo-header {
+  height: 32px;
+  width: auto;
+  display: block;
+  object-fit: contain;
+}
+
+@media (prefers-color-scheme: dark) {
+  .broker-logo-header {
+    filter: brightness(1.15);
+  }
+}
+
+/* Typography & Content Sections */
+.lead-text {
+  font-size: 18px;
+  color: var(--text-secondary);
+  margin-bottom: 36px;
+  font-weight: 400;
+  line-height: 1.65;
+}
+
+.lead-text strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.card {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-left: 4px solid var(--color-gold);
+  border-radius: 0 8px 8px 0;
+  padding: 28px 28px;
+  margin-bottom: 40px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+}
+
+.card h2 {
+  font-size: 16px;
+  color: var(--color-gold);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+  font-weight: 700;
+}
+
+.card ul {
+  list-style: none;
+}
+
+.card li {
+  margin-bottom: 14px;
+  font-size: 15px;
+  color: var(--text-secondary);
+  padding-left: 20px;
+  position: relative;
+  line-height: 1.6;
+}
+
+.card li::before {
+  content: "▪";
+  color: var(--color-gold);
+  position: absolute;
+  left: 0;
+  top: -1px;
+  font-size: 14px;
+}
+
+.card li:last-child {
+  margin-bottom: 0;
+}
+
+.card strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+/* Buttons */
+.action-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-bottom: 48px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 22px;
+  font-size: 13.5px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.btn-gold {
+  background-color: var(--color-gold);
+  color: #1C1917;
+}
+
+.btn-gold:hover {
+  background-color: #E2BC44;
+  transform: translateY(-1px);
+}
+
+.btn-outline {
+  border: 1px solid var(--btn-outline-border);
+  color: var(--text-primary);
+  background-color: var(--bg-surface);
+}
+
+.btn-outline:hover {
+  border-color: var(--color-gold);
+  color: var(--color-gold);
+  transform: translateY(-1px);
+}
+
+/* FREC Footer */
+footer {
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 32px;
+  font-size: 12.5px;
+  color: var(--text-muted);
+  line-height: 1.65;
+}
+
+.footer-brand-strip {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.footer-broker-logo {
+  height: 38px;
+  width: auto;
+  display: block;
+}
+
+.footer-brokerage-title {
+  font-weight: 700;
+  color: var(--text-primary);
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.footer-compliance-text {
+  font-size: 11.5px;
+  color: var(--text-muted);
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px dashed var(--border-subtle);
+}
+
+.footer-links a {
+  color: var(--color-gold);
+  text-decoration: none;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 640px) {
+  .header-nav {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .nav-links {
+    width: 100%;
+    justify-content: flex-start;
+    gap: 16px;
+    padding: 8px 0;
+  }
+  .broker-header-lockup {
+    border-left: none;
+    padding-left: 0;
+    align-items: flex-start;
+  }
+  .action-links {
+    flex-direction: column;
+  }
+  .btn {
+    width: 100%;
+  }
+}
