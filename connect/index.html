@@ -56,6 +56,10 @@
       padding: 0;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
       background-color: var(--bg-canvas);
@@ -100,7 +104,7 @@
       border-radius: 14px;
       overflow: hidden;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
-      margin-bottom: 28px;
+      margin-bottom: 24px;
     }
 
     /* Header Profile Banner */
@@ -154,7 +158,7 @@
     .quick-actions {
       display: flex;
       justify-content: space-around;
-      padding: 20px 16px;
+      padding: 20px 10px;
       border-bottom: 1px solid var(--border-subtle);
       background-color: var(--bg-surface);
     }
@@ -166,13 +170,13 @@
       gap: 6px;
       text-decoration: none;
       color: var(--text-secondary);
-      font-size: 11.5px;
+      font-size: 11px;
       font-weight: 600;
     }
 
     .action-circle-icon {
-      width: 48px;
-      height: 48px;
+      width: 44px;
+      height: 44px;
       border-radius: 50%;
       object-fit: contain;
       display: block;
@@ -279,7 +283,7 @@
       border-radius: 0 10px 10px 0;
       padding: 24px 20px;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
-      margin-bottom: 32px;
+      margin-bottom: 24px;
     }
 
     .calendar-card h3 {
@@ -310,6 +314,53 @@
       width: 100%;
       height: 100%;
       border: none;
+    }
+
+    /* Dedicated QR Code Share Card */
+    .qr-share-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 28px 20px;
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+      margin-bottom: 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .qr-frame-box {
+      width: 170px;
+      height: 170px;
+      padding: 10px;
+      background-color: #FFFFFF;
+      border: 1.5px solid var(--color-gold);
+      border-radius: 12px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+      margin-bottom: 16px;
+    }
+
+    .qr-image {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    .qr-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .qr-subtitle {
+      font-size: 12px;
+      color: var(--text-muted);
+      max-width: 320px;
     }
 
     /* Statutory FREC Footer */
@@ -367,6 +418,10 @@
         <a href="#calendar-booking" class="action-btn">
           <img src="/icons/calendar.svg" alt="Book" class="action-circle-icon">
           <span>Book</span>
+        </a>
+        <a href="#qr-section" class="action-btn">
+          <img src="/icons/qr-connect.png" alt="Share QR" class="action-circle-icon" style="border: 1px solid var(--color-gold); padding: 4px; background: #fff;">
+          <span>QR</span>
         </a>
       </div>
 
@@ -448,7 +503,7 @@
             <img src="/icons/fb.svg" alt="Facebook" class="link-badge-icon">
             <div>
               <div class="link-text-title">Facebook Page</div>
-              <div class="link-text-sub">https://facebook.com/jegomezpolo</div>
+              <div class="link-text-sub">https://facebook.com/jegomezproperties</div>
             </div>
           </div>
           <span class="link-arrow">→</span>
@@ -460,7 +515,7 @@
             <img src="/icons/tt.svg" alt="TikTok" class="link-badge-icon">
             <div>
               <div class="link-text-title">TikTok</div>
-              <div class="link-text-sub">https://tiktok.com/@jegomezpolo</div>
+              <div class="link-text-sub">https://tiktok.com/@jegomezproperties</div>
             </div>
           </div>
           <span class="link-arrow">→</span>
@@ -498,14 +553,21 @@
       <h3>Book a Private Advisory Consultation</h3>
       <p>Select a time directly on my schedule for property underwriting or acquisition strategy.</p>
       <div class="calendar-frame-box">
-        <!-- Replace src with your Google Calendar Appointment Schedule share link -->
         <iframe 
-        
           src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ3eIXLvlV2OmLWLk4oI3zpPoUa1xPjPFla3DcuqtXv2k3Z3VxcMPwS11rWQcwgeXMACYd0amiSx?gv=true" 
           class="calendar-frame" 
           loading="lazy">
         </iframe>
       </div>
+    </div>
+
+    <!-- DEDICATED QR CODE SHARE CARD -->
+    <div id="qr-section" class="qr-share-card">
+      <div class="qr-frame-box">
+        <img src="/icons/qr-connect.png" alt="Scan to Connect" class="qr-image">
+      </div>
+      <h3 class="qr-title">Scan to Exchange & Save Contact</h3>
+      <p class="qr-subtitle">Point your phone camera to open and save this digital advisory card directly to your contacts.</p>
     </div>
 
     <!-- FREC STATUTORY COMPLIANCE FOOTER -->
