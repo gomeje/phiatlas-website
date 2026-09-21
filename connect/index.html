@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Connect | Jesus Gomez Polo | Phi Atlas Advisory</title>
+  <meta name="description" content="Digital business card and direct advisory consultation scheduling for Jesus Gomez Polo, Licensed Real Estate Sales Associate with Brokers, LLC.">
+
+  <!-- ========================================== -->
+  <!-- FAVICON & PLATFORM ASSET SUITE             -->
+  <!-- ========================================== -->
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+
+  <style>
+    /* ========================================== */
+    /* THEME SYSTEM (LIGHT DEFAULT + AUTO DARK)   */
+    /* ========================================== */
+    :root {
+      --color-gold: #D4AF37;
+      --color-ochre: #9C784A;
+
+      /* Light Theme (Default) */
+      --bg-canvas: #FAFAF9;
+      --bg-surface: #FFFFFF;
+      --border-subtle: #E7E5E4;
+      --border-card: #D6D3D1;
+      --text-primary: #1C1917;
+      --text-secondary: #44403C;
+      --text-muted: #78716C;
+      --logo-primary: #1C1917;
+      --btn-outline-border: #D6D3D1;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg-canvas: #131110;
+        --bg-surface: #1C1917;
+        --border-subtle: #292524;
+        --border-card: #44403C;
+        --text-primary: #F5F5F4;
+        --text-secondary: #D6D3D1;
+        --text-muted: #A8A29E;
+        --logo-primary: #FFFFFF;
+        --btn-outline-border: #44403C;
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg-canvas);
+      color: var(--text-primary);
+      line-height: 1.5;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 32px 16px 48px;
+      transition: background-color 0.25s ease, color 0.25s ease;
+    }
+
+    .card-container {
+      max-width: 480px;
+      width: 100%;
+    }
+
+    /* Top Return Link */
+    .nav-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--color-gold);
+      text-decoration: none;
+      margin-bottom: 24px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      transition: opacity 0.2s ease;
+    }
+
+    .nav-back:hover {
+      opacity: 0.8;
+    }
+
+    /* BizCard Surface */
+    .bizcard {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+      margin-bottom: 28px;
+    }
+
+    /* Header Profile Banner */
+    .bizcard-header {
+      background: linear-gradient(135deg, #1C1917 0%, #292524 100%);
+      padding: 36px 20px 24px;
+      text-align: center;
+    }
+
+    .avatar-wrapper {
+      width: 108px;
+      height: 108px;
+      border-radius: 50%;
+      border: 3px solid var(--color-gold);
+      margin: 0 auto 16px;
+      overflow: hidden;
+      background-color: #1C1917;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+    }
+
+    .avatar-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .profile-name {
+      color: #FFFFFF;
+      font-size: 21px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      margin-bottom: 4px;
+    }
+
+    .profile-title {
+      color: var(--color-gold);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      font-weight: 600;
+    }
+
+    .profile-sub {
+      color: #A8A29E;
+      font-size: 12.5px;
+      margin-top: 4px;
+    }
+
+    /* Quick Actions */
+    .quick-actions {
+      display: flex;
+      justify-content: space-around;
+      padding: 20px 16px;
+      border-bottom: 1px solid var(--border-subtle);
+      background-color: var(--bg-surface);
+    }
+
+    .action-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+      color: var(--text-secondary);
+      font-size: 11.5px;
+      font-weight: 600;
+    }
+
+    .action-circle-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      object-fit: contain;
+      display: block;
+      transition: transform 0.2s ease;
+    }
+
+    .action-btn:hover .action-circle-icon {
+      transform: translateY(-2px) scale(1.04);
+    }
+
+    /* Primary CTA Button */
+    .cta-container {
+      padding: 16px 20px;
+      background-color: var(--bg-surface);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .btn-save-contact {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      padding: 13px;
+      background-color: var(--color-gold);
+      color: #1C1917;
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      text-decoration: none;
+      border-radius: 6px;
+      transition: background-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .btn-save-contact:hover {
+      background-color: #E2BC44;
+      transform: translateY(-1px);
+    }
+
+    /* Structured Link List */
+    .links-list {
+      padding: 16px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .biz-link-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 14px;
+      background-color: var(--bg-canvas);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.2s ease;
+    }
+
+    .biz-link-row:hover {
+      border-color: var(--color-gold);
+      transform: translateX(2px);
+    }
+
+    .link-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .link-badge-icon {
+      width: 38px;
+      height: 38px;
+      object-fit: contain;
+      flex-shrink: 0;
+      display: block;
+    }
+
+    .link-text-title {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .link-text-sub {
+      font-size: 11.5px;
+      color: var(--text-muted);
+      word-break: break-all;
+    }
+
+    .link-arrow {
+      color: var(--color-gold);
+      font-size: 14px;
+      font-weight: 700;
+      margin-left: 8px;
+    }
+
+    /* Google Calendar Embed Section */
+    .calendar-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-left: 4px solid var(--color-gold);
+      border-radius: 0 10px 10px 0;
+      padding: 24px 20px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+      margin-bottom: 32px;
+    }
+
+    .calendar-card h3 {
+      font-size: 15px;
+      color: var(--color-gold);
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .calendar-card p {
+      font-size: 12.5px;
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+    }
+
+    .calendar-frame-box {
+      width: 100%;
+      height: 540px;
+      border-radius: 6px;
+      border: 1px solid var(--border-subtle);
+      overflow: hidden;
+      background-color: #FFFFFF;
+    }
+
+    .calendar-frame {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    /* Statutory FREC Footer */
+    footer {
+      border-top: 1px solid var(--border-subtle);
+      padding-top: 24px;
+      font-size: 11.5px;
+      color: var(--text-muted);
+      text-align: center;
+      line-height: 1.6;
+    }
+
+    .footer-broker-img {
+      height: 32px;
+      width: auto;
+      margin-bottom: 10px;
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card-container">
+    
+    <!-- Top Return Link -->
+    <a href="/" class="nav-back">← Back to Phi Atlas Advisory</a>
+
+    <!-- THE DIGITAL BIZCARD -->
+    <div class="bizcard">
+      
+      <!-- Profile Header -->
+      <div class="bizcard-header">
+        <div class="avatar-wrapper">
+          <img src="/headshot.jpeg" alt="Jesus Gomez Polo" class="avatar-img" onerror="this.style.display='none'">
+        </div>
+        <h1 class="profile-name">Jesus Gomez Polo</h1>
+        <p class="profile-title">Real Estate Agent | REALTOR®</p>
+        <p class="profile-sub">Principal, Phi Atlas Advisory</p>
+      </div>
+
+      <!-- Quick Action Buttons -->
+      <div class="quick-actions">
+        <a href="tel:+16577662225" class="action-btn">
+          <img src="/icons/phone.svg" alt="Call" class="action-circle-icon">
+          <span>Call</span>
+        </a>
+        <a href="mailto:jegomez@phiatlas.com" class="action-btn">
+          <img src="/icons/email.svg" alt="Email" class="action-circle-icon">
+          <span>Email</span>
+        </a>
+        <a href="https://wa.me/16577662225" target="_blank" rel="noopener" class="action-btn">
+          <img src="/icons/wa.svg" alt="WhatsApp" class="action-circle-icon">
+          <span>WhatsApp</span>
+        </a>
+        <a href="#calendar-booking" class="action-btn">
+          <img src="/icons/address.svg" alt="Book" class="action-circle-icon">
+          <span>Book</span>
+        </a>
+      </div>
+
+      <!-- Integrated VCF Contact Download -->
+      <div class="cta-container">
+        <a href="data:text/vcard;charset=utf-8,BEGIN%3AVCARD%0AVERSION%3A3.0%0AFN%3AJesus%20Gomez%20Polo%0AORG%3APhi%20Atlas%20Advisory%3BBrokers%20LLC%0ATITLE%3ALicensed%20Real%20Estate%20Sales%20Associate%0ATEL%3BTYPE%3DCELL%3A%2B16577662225%0ATEL%3BTYPE%3DWORK%3A%2B19543841616%0AEMAIL%3Ajegomez%40phiatlas.com%0AURL%3Ahttps%3A%2F%2Fphiatlas.com%0AADR%3BTYPE%3DWORK%3A%3B%3B20200%20West%20Dixie%20Hwy%2C%20Suite%20G07%3BAventura%3BFL%3B33180%3BUSA%0AEND%3AVCARD" 
+           download="Jesus_Gomez_Polo.vcf" 
+           class="btn-save-contact">
+          Save Contact to Phone
+        </a>
+      </div>
+
+      <!-- Structured Information Links (SVGs) -->
+      <div class="links-list">
+        
+        <!-- Broker Office Location -->
+        <a href="https://maps.google.com/?q=20200+West+Dixie+Hwy+Suite+G07+Aventura+FL+33180" target="_blank" rel="noopener" class="biz-link-row">
+          <div class="link-left">
+            <img src="/icons/address.svg" alt="Location" class="link-badge-icon">
+            <div>
+              <div class="link-text-title">Brokers, LLC</div>
+              <div class="link-text-sub">20200 W Dixie Hwy, Ste G07, Aventura, FL 33180</div>
+            </div>
+          </div>
+          <span class="link-arrow">→</span>
+        </a>
+
+        <!-- Office Phone -->
+        <a href="tel:+19543841616" class="biz-link-row">
+          <div class="link-left">
+            <img src="/icons/phone.svg" alt="Phone" class="link-badge-icon">
+            <div>
+              <div class="link-text-title">Office Phone</div>
+              <div class="link-text-sub">954-384-1616</div>
+            </div>
+          </div>
+          <span class="link-arrow">→</span>
+        </a>
+
+        <!-- WhatsApp Direct -->
+        <a href="https://wa.me/16577662225" target="_blank" rel="noopener" class="biz-link-row">
+          <div class="link-left">
+            <img src="/icons/wa.svg" alt="WhatsApp" class="link-badge-icon">
+            <div>
+              <div class="link-text-title">WhatsApp</div>
+              <div class="link-text-sub">https://wa.me/16577662225</div>
+            </div>
+          </div>
+          <span class="link-arrow">→</span>
+        </a>
+
+        <!-- Main Advisory Website -->
+        <a href="https://phiatlas.com" class="biz-link-row">
+          <div class="link-left">
+            <img src="/icons/web.svg" alt="Website" class="link-badge-icon">
+            <div>
+              <div class="link-text-title">Phi Atlas Advisory</div>
+              <div class="link-text-sub">https://phiatlas.com</div>
+            </div>
+          </div>
+          <span class="link-arrow">→</span>
+        </a>
+
+        <!-- Instagram -->
+        <a href="https://instagram.com/jesusgomezpolo" target="_blank" rel="noopener" class="biz-link-row">
+          <div class="link-left">
+            <img src="/icons/ig.svg" alt="Instagram" class="link-badge-icon">
+            <div>
+              <div class="link-text-title">Instagram</div>
+              <div class="link-text-sub">https://instagram.com/jesusgomezpolo</div>
+            </div>
+          </div>
+          <span class="link-arrow">→</span>
+        </a>
+
+        <!-- Facebook Page -->
+        <a href="https://facebook.com/jegomezpolo" target="_blank" rel="noopener" class="biz-link-row">
+          <div class="link-left">
+            <img src="/icons/fb.svg" alt="Facebook" class="link-badge-icon">
+            <div>
+              <div class="link-text-title">Facebook Page</div>
+              <div class="link-text-sub">https://facebook.com/jegomezpolo</div>
+            </div>
+          </div>
+          <span class="link-arrow">→</span>
+        </a>
+
+        <!-- TikTok -->
+        <a href="https://tiktok.com/@jegomezpolo" target="_blank" rel="noopener" class="biz-link-row">
+          <div class="link-left">
+            <img src="/icons/tt.svg" alt="TikTok" class="link-badge-icon">
+            <div>
+              <div class="link-text-title">TikTok</div>
+              <div class="link-text-sub">https://tiktok.com/@jegomezpolo</div>
+            </div>
+          </div>
+          <span class="link-arrow">→</span>
+        </a>
+
+        <!-- X (formerly Twitter) -->
+        <a href="https://x.com/JeGomezReal" target="_blank" rel="noopener" class="biz-link-row">
+          <div class="link-left">
+            <img src="/icons/X.svg" alt="X" class="link-badge-icon">
+            <div>
+              <div class="link-text-title">X</div>
+              <div class="link-text-sub">https://x.com/JeGomezReal</div>
+            </div>
+          </div>
+          <span class="link-arrow">→</span>
+        </a>
+
+        <!-- Broker's Corporate Website -->
+        <a href="http://brokersllc.com" target="_blank" rel="noopener" class="biz-link-row">
+          <div class="link-left">
+            <img src="/icons/web2.svg" alt="Broker's Corporate Site" class="link-badge-icon">
+            <div>
+              <div class="link-text-title">Broker's Website</div>
+              <div class="link-text-sub">http://brokersllc.com</div>
+            </div>
+          </div>
+          <span class="link-arrow">→</span>
+        </a>
+
+      </div>
+    </div>
+
+    <!-- CALENDAR BOOKING INTEGRATION -->
+    <div id="calendar-booking" class="calendar-card">
+      <h3>Book a Private Advisory Consultation</h3>
+      <p>Select a time directly on my schedule for property underwriting or acquisition strategy.</p>
+      <div class="calendar-frame-box">
+        <!-- Replace src with your Google Calendar Appointment Schedule share link -->
+        <iframe 
+          src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ0o_replace_with_your_actual_schedule_id?gv=true" 
+          class="calendar-frame" 
+          loading="lazy">
+        </iframe>
+      </div>
+    </div>
+
+    <!-- FREC STATUTORY COMPLIANCE FOOTER -->
+    <footer>
+      <img src="/broker-logo.png" alt="Brokers LLC Logo" class="footer-broker-img">
+      <p><strong>Brokers, LLC</strong> &nbsp;|&nbsp; Licensed Florida Real Estate Brokerage</p>
+      <p>Jesus Gomez Polo, Licensed Real Estate Sales Associate</p>
+      <p style="font-size: 10.5px; margin-top: 8px;">
+        All brokerage services supervised by Brokers, LLC pursuant to FREC Rules 61J2-10.025 &amp; 61J2-10.026. Equal Housing Opportunity.
+      </p>
+    </footer>
+
+  </div>
+
+</body>
+</html>
