@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mortgage Amortization &amp; Acceleration Engine | Phi Atlas Advisory</title>
+  <meta name="description" content="Calculate loan amortization, quantify total interest savings via accelerated principal prepayments, analyze capital vs. interest distributions, and export schedules directly to Excel.">
+
+  <!-- Favicon Suite -->
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+
+  <div class="container">
+    
+    <!-- HEADER -->
+    <header>
+      <nav class="header-nav">
+        <a href="/" class="brand-identity" aria-label="Phi Atlas Advisory Home">
+          <svg class="brand-mark" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <line x1="50" y1="7" x2="50" y2="93" stroke="var(--logo-primary)" stroke-width="5.0" stroke-linecap="round"/>
+            <path d="M 43.5 18.6 A 32 32 0 0 0 43.5 81.4" stroke="var(--logo-primary)" stroke-width="3.5" stroke-linecap="round"/>
+            <path d="M 56.5 18.6 A 32 32 0 0 1 56.5 81.4" stroke="var(--logo-primary)" stroke-width="3.5" stroke-linecap="round"/>
+            <path d="M 43.5 31.6 A 30 19 0 0 0 43.5 68.4" stroke="var(--color-gold)" stroke-width="2.6" stroke-linecap="round"/>
+            <path d="M 56.5 31.6 A 30 19 0 0 1 56.5 68.4" stroke="var(--color-gold)" stroke-width="2.6" stroke-linecap="round"/>
+            <line x1="20" y1="50" x2="80" y2="50" stroke="var(--color-ochre)" stroke-width="2.4" stroke-dasharray="3.2 2.4"/>
+            <circle cx="20" cy="50" r="3.0" fill="var(--logo-primary)"/>
+            <circle cx="80" cy="50" r="3.0" fill="var(--logo-primary)"/>
+            <circle cx="50" cy="50" r="4.6" fill="var(--color-gold)"/>
+          </svg>
+          <div class="brand-text">
+            <span class="brand-title">Phi Atlas</span>
+            <span class="brand-subtitle">Advisory</span>
+          </div>
+        </a>
+
+        <ul class="nav-links">
+          <li><a href="/" class="nav-link">Overview</a></li>
+          <li><a href="/strategy" class="nav-link">Strategy</a></li>
+          <li><a href="/tools" class="nav-link active">Tools</a></li>
+          <li><a href="/resources" class="nav-link">Resources</a></li>
+          <li><a href="/connect" class="nav-link">Connect</a></li>
+        </ul>
+
+        <div class="broker-header-lockup">
+          <span class="broker-header-label">Brokered By</span>
+          <img src="/broker-logo.png" alt="Brokers LLC" class="broker-logo-header">
+        </div>
+      </nav>
+    </header>
+
+    <!-- SUB-NAV PILL BAR -->
+    <div class="tools-subnav">
+      <a href="/tools/mortgage-amortization" class="subnav-pill active">Debt Amortization &amp; Acceleration</a>
+      <a href="/tools" class="subnav-pill">&larr; All Models</a>
+    </div>
+
+    <!-- CALCULATOR ENGINE -->
+    <main>
+      <div style="margin-bottom: 28px;">
+        <h1 style="font-size: 24px; font-weight: 700; margin-bottom: 6px;">Debt Amortization &amp; Acceleration Engine</h1>
+        <p class="lead-text" style="margin-bottom: 0; font-size: 15px;">
+          Evaluate total debt service and quantify how discretionary principal prepayments compress loan duration, protect equity, and mitigate unrecoverable interest.
+        </p>
+      </div>
+
+      <div class="calc-grid">
+        
+        <!-- INPUTS PANEL -->
+        <div class="calc-panel">
+          <h2>Financing Parameters</h2>
+          
+          <div class="form-group">
+            <label for="homePrice">Property Purchase Price ($)</label>
+            <input type="number" id="homePrice" value="750000" step="5000">
+          </div>
+
+          <div class="form-group">
+            <label for="downPaymentPercent">Down Payment (%)</label>
+            <input type="number" id="downPaymentPercent" value="20" min="0" max="100" step="1">
+          </div>
+
+          <div class="form-group">
+            <label for="loanTermYears">Loan Term (Years)</label>
+            <select id="loanTermYears">
+              <option value="30" selected>30 Years (Fixed)</option>
+              <option value="20">20 Years (Fixed)</option>
+              <option value="15">15 Years (Fixed)</option>
+              <option value="10">10 Years (Fixed)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="interestRate">Annual Interest Rate (%)</label>
+            <input type="number" id="interestRate" value="6.5" step="0.05">
+          </div>
+
+          <h2 style="margin-top: 24px;">Acceleration Vectors</h2>
+
+          <div class="form-group">
+            <label for="extraMonthly">Recurring Extra Principal ($/Month)</label>
+            <input type="number" id="extraMonthly" value="250" step="50">
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+            <div class="form-group">
+              <label for="lumpSumAmount">One-Time Lump Sum ($)</label>
+              <input type="number" id="lumpSumAmount" value="0" step="1000">
+            </div>
+            <div class="form-group">
+              <label for="lumpSumMonth">Target Month #</label>
+              <input type="number" id="lumpSumMonth" value="12" min="1" max="360">
+            </div>
+          </div>
+        </div>
+
+        <!-- PERFORMANCE OUTPUTS PANEL -->
+        <div class="calc-panel">
+          <h2>Comparative Performance</h2>
+
+          <div class="kpi-matrix">
+            <div class="kpi-card">
+              <div class="kpi-label">Base Monthly (P&amp;I)</div>
+              <div class="kpi-val" id="dispBaseMonthly">$0</div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-label">Accelerated Outflow</div>
+              <div class="kpi-val" id="dispTotalMonthly">$0</div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-label">Standard Loan Term</div>
+              <div class="kpi-val" id="dispBaseTerm">30 Yrs</div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-label">Accelerated Payoff</div>
+              <div class="kpi-val highlight" id="dispAccelTerm">0 Yrs</div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-label">Base Lifetime Interest</div>
+              <div class="kpi-val" id="dispBaseInterest">$0</div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-label">Total Interest Saved</div>
+              <div class="kpi-val highlight" id="dispSavedInterest">$0</div>
+            </div>
+          </div>
+
+          <div style="margin-top: 20px;">
+            <button id="btnExportCsv" class="btn btn-gold" style="width: 100%; border: none; cursor: pointer;">
+              Download Schedule (.CSV / Excel)
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- VISUAL ANALYSIS SUITE (EXPANDED DUAL CHART) -->
+      <section class="chart-card">
+        <div class="chart-header">
+          <div class="chart-title-group">
+            <span class="chart-title" id="chartViewTitle">Principal Balance Amortization Trajectory</span>
+            <span class="chart-subtitle" id="chartViewSubtitle">Principal Balance Amortization Trajectory</span>
+          </div>
+          <div class="chart-view-toggle">
+            <button type="button" class="toggle-btn active" id="btnViewBalance" onclick="setChartView('balance')">Balance Decay</button>
+            <button type="button" class="toggle-btn" id="btnViewCapVsInt" onclick="setChartView('capitalVsInterest')">Capital vs. Interest</button>
+          </div>
+        </div>
+
+        <!-- Capital vs Interest Analytical Matrix -->
+        <div class="capital-interest-summary">
+          <div class="cis-item">
+            <span class="cis-label">Borrowed Capital</span>
+            <span class="cis-value" id="summaryPrincipal">$0</span>
+          </div>
+          <div class="cis-item">
+            <span class="cis-label">Lifetime Interest</span>
+            <span class="cis-value gold" id="summaryInterest">$0</span>
+          </div>
+          <div class="cis-item">
+            <span class="cis-label">Total Outlay</span>
+            <span class="cis-value" id="summaryTotalPaid">$0</span>
+          </div>
+          <div class="cis-item">
+            <span class="cis-label">Interest-to-Principal Ratio</span>
+            <span class="cis-value" id="summaryCostRatio">0%</span>
+          </div>
+        </div>
+
+        <!-- Dynamic Legend -->
+        <div class="chart-legend" id="chartLegend">
+          <!-- Populated by JS based on active view -->
+        </div>
+
+        <!-- 380px Height Scaled Canvas -->
+        <div class="canvas-container">
+          <canvas id="amortizationCanvas"></canvas>
+        </div>
+      </section>
+
+      <!-- AMORTIZATION SCHEDULE TABLE -->
+      <section>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <h2 style="font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px;">Amortization Schedule</h2>
+          <span style="font-size: 12px; color: var(--text-muted);" id="scheduleCount">Showing all payments</span>
+        </div>
+        
+        <div class="table-wrapper">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th style="text-align: left;">#</th>
+                <th>Scheduled Payment</th>
+                <th>Principal</th>
+                <th>Interest</th>
+                <th>Extra Paid</th>
+                <th>Total Interest</th>
+                <th>Remaining Balance</th>
+              </tr>
+            </thead>
+            <tbody id="scheduleBody"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <!-- FREC FOOTER -->
+    <footer>
+      <div class="footer-brand-strip">
+        <div>
+          <p class="footer-brokerage-title">Brokers, LLC</p>
+          <p>20200 W. Dixie Hwy, Suite G-07, Aventura, FL 33180</p>
+        </div>
+        <img src="/broker-logo.png" alt="Brokers LLC Logo" class="footer-broker-logo">
+      </div>
+      <p class="footer-links">
+        Jesus Gomez Polo, Licensed Real Estate Sales Associate &nbsp;|&nbsp; 
+        <a href="https://phiatlas.com">phiatlas.com</a>
+      </p>
+      <p class="footer-compliance-text">
+        Phi Atlas Advisory is a real estate marketing and advisory entity operated by Jesus Gomez Polo, a licensed Florida Real Estate Sales Associate affiliated with Brokers, LLC[cite: 5]. All brokerage services and transactions are conducted under the supervision of Brokers, LLC in strict compliance with the Florida Real Estate Commission (FREC Rules 61J2-10.025 &amp; 61J2-10.026)[cite: 5]. Equal Housing Opportunity[cite: 5].
+      </p>
+    </footer>
+
+  </div>
+
+  <!-- CALCULATION & CANVAS ENGINE -->
+  <script>
+    let globalSchedule = [];
+    let baseSchedule = [];
+    let currentChartView = 'balance'; // 'balance' or 'capitalVsInterest'
+
+    function fmt(num) {
+      return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(num);
+    }
+
+  function setChartView(viewName) {
+      currentChartView = viewName;
+      document.getElementById('btnViewBalance').classList.toggle('active', viewName === 'balance');
+      document.getElementById('btnViewCapVsInt').classList.toggle('active', viewName === 'capitalVsInterest');
+      
+      const subElem = document.getElementById('chartViewSubtitle');
+      if (viewName === 'balance') {
+        subElem.textContent = 'Principal Balance Amortization Trajectory';
+      } else {
+        subElem.textContent = 'Cumulative Capital Built vs. Cumulative Interest Paid';
+      }
+
+      renderCurrentChart();
+    }
+
+    function calculateAmortization() {
+      const price = parseFloat(document.getElementById('homePrice').value) || 0;
+      const downPercent = parseFloat(document.getElementById('downPaymentPercent').value) || 0;
+      const termYears = parseInt(document.getElementById('loanTermYears').value) || 30;
+      const annualRate = parseFloat(document.getElementById('interestRate').value) || 0;
+      const extraMonthly = parseFloat(document.getElementById('extraMonthly').value) || 0;
+      const lumpSum = parseFloat(document.getElementById('lumpSumAmount').value) || 0;
+      const lumpMonth = parseInt(document.getElementById('lumpSumMonth').value) || 0;
+
+      const principal = price * (1 - (downPercent / 100));
+      const r = (annualRate / 100) / 12;
+      const totalMonths = termYears * 12;
+
+      if (principal <= 0 || r <= 0) return;
+
+      // Base Standard Schedule Loop
+      const baseMonthly = principal * (r * Math.pow(1 + r, totalMonths)) / (Math.pow(1 + r, totalMonths) - 1);
+      const baseTotalInterest = (baseMonthly * totalMonths) - principal;
+
+      baseSchedule = [];
+      let bBalance = principal;
+      let bCumInt = 0;
+      let bCumPrin = 0;
+
+      for (let m = 1; m <= totalMonths; m++) {
+        const bInterest = bBalance * r;
+        let bPrincipal = baseMonthly - bInterest;
+        if (bPrincipal > bBalance) bPrincipal = bBalance;
+        bBalance -= bPrincipal;
+        bCumInt += bInterest;
+        bCumPrin += bPrincipal;
+
+        baseSchedule.push({ 
+          month: m, 
+          balance: Math.max(0, bBalance),
+          cumInterest: bCumInt,
+          cumPrincipal: bCumPrin
+        });
+      }
+
+      // Accelerated Schedule Loop
+      let balance = principal;
+      let cumInterest = 0;
+      let cumPrincipal = 0;
+      let month = 0;
+      globalSchedule = [];
+
+      while (balance > 0.01 && month < totalMonths + 120) {
+        month++;
+        const interestPaid = balance * r;
+        let actualExtra = extraMonthly;
+        if (month === lumpMonth) actualExtra += lumpSum;
+
+        let principalPaid = (baseMonthly - interestPaid) + actualExtra;
+        let paymentThisMonth = baseMonthly + actualExtra;
+
+        if (principalPaid >= balance) {
+          principalPaid = balance;
+          paymentThisMonth = balance + interestPaid;
+          balance = 0;
+        } else {
+          balance -= principalPaid;
+        }
+
+        cumInterest += interestPaid;
+        cumPrincipal += principalPaid;
+
+        globalSchedule.push({
+          month: month,
+          payment: paymentThisMonth,
+          principal: principalPaid,
+          interest: interestPaid,
+          extra: actualExtra,
+          totalInterest: cumInterest,
+          cumPrincipal: cumPrincipal,
+          balance: balance
+        });
+      }
+
+      // Update KPI Displays
+      document.getElementById('dispBaseMonthly').textContent = fmt(baseMonthly);
+      document.getElementById('dispTotalMonthly').textContent = fmt(baseMonthly + extraMonthly);
+      document.getElementById('dispBaseTerm').textContent = termYears + " Years";
+
+      const accelYears = Math.floor(month / 12);
+      const accelMonths = month % 12;
+      document.getElementById('dispAccelTerm').textContent = accelYears + "y " + accelMonths + "m";
+
+      document.getElementById('dispBaseInterest').textContent = fmt(baseTotalInterest);
+      const savedInterest = Math.max(0, baseTotalInterest - cumInterest);
+      document.getElementById('dispSavedInterest').textContent = fmt(savedInterest);
+
+      // Update Summary Bar
+      document.getElementById('summaryPrincipal').textContent = fmt(principal);
+      document.getElementById('summaryInterest').textContent = fmt(cumInterest);
+      document.getElementById('summaryTotalPaid').textContent = fmt(principal + cumInterest);
+      document.getElementById('summaryCostRatio').textContent = ((cumInterest / principal) * 100).toFixed(1) + "%";
+
+      // Render Schedule Table
+      const tbody = document.getElementById('scheduleBody');
+      tbody.innerHTML = '';
+      
+      const fragment = document.createDocumentFragment();
+      globalSchedule.forEach(row => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td style="text-align:left; font-weight:600;">${row.month}</td>
+          <td>${fmt(row.payment)}</td>
+          <td>${fmt(row.principal)}</td>
+          <td>${fmt(row.interest)}</td>
+          <td>${fmt(row.extra)}</td>
+          <td>${fmt(row.totalInterest)}</td>
+          <td style="font-weight:600;">${fmt(row.balance)}</td>
+        `;
+        fragment.appendChild(tr);
+      });
+      tbody.appendChild(fragment);
+      document.getElementById('scheduleCount').textContent = `Total Payments: ${globalSchedule.length}`;
+
+      renderCurrentChart();
+    }
+
+    function renderCurrentChart() {
+      const price = parseFloat(document.getElementById('homePrice').value) || 0;
+      const downPercent = parseFloat(document.getElementById('downPaymentPercent').value) || 0;
+      const termYears = parseInt(document.getElementById('loanTermYears').value) || 30;
+      const principal = price * (1 - (downPercent / 100));
+      const totalBaseMonths = termYears * 12;
+
+      const legend = document.getElementById('chartLegend');
+
+      if (currentChartView === 'balance') {
+        legend.innerHTML = `
+          <div class="legend-item">
+            <span class="legend-swatch" style="background-color: #78716C;"></span>
+            <span style="color: var(--text-secondary);">Standard Schedule</span>
+          </div>
+          <div class="legend-item">
+            <span class="legend-swatch" style="background-color: var(--color-gold);"></span>
+            <span style="color: var(--color-gold);">Accelerated Schedule</span>
+          </div>
+        `;
+        drawBalanceChart(principal, totalBaseMonths);
+      } else {
+        legend.innerHTML = `
+          <div class="legend-item">
+            <span class="legend-swatch" style="background-color: var(--color-gold);"></span>
+            <span style="color: var(--color-gold);">Cumulative Capital (Equity)</span>
+          </div>
+          <div class="legend-item">
+            <span class="legend-swatch" style="background-color: #DC2626;"></span>
+            <span style="color: #DC2626;">Cumulative Interest Paid</span>
+          </div>
+        `;
+        drawCapitalVsInterestChart(principal, totalBaseMonths);
+      }
+    }
+
+    // View 1: Balance Decay
+    function drawBalanceChart(initialPrincipal, totalBaseMonths) {
+      const canvas = document.getElementById('amortizationCanvas');
+      const ctx = canvas.getContext('2d');
+      const dpr = window.devicePixelRatio || 1;
+      
+      const rect = canvas.getBoundingClientRect();
+      canvas.width = rect.width * dpr;
+      canvas.height = rect.height * dpr;
+      ctx.scale(dpr, dpr);
+
+      const w = rect.width;
+      const h = rect.height;
+      const padLeft = 70;
+      const padRight = 24;
+      const padTop = 20;
+      const padBottom = 34;
+
+      const chartW = w - padLeft - padRight;
+      const chartH = h - padTop - padBottom;
+
+      ctx.clearRect(0, 0, w, h);
+
+      const isDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const gridColor = isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.06)';
+      const textColor = isDark ? '#A8A29E' : '#78716C';
+
+      // Y-Axis Ticks
+      ctx.strokeStyle = gridColor;
+      ctx.lineWidth = 1;
+      ctx.fillStyle = textColor;
+      ctx.font = '11px -apple-system, BlinkMacSystemFont, sans-serif';
+      ctx.textAlign = 'right';
+
+      const yTicks = 5;
+      for (let i = 0; i <= yTicks; i++) {
+        const yVal = (initialPrincipal / yTicks) * i;
+        const yPos = padTop + chartH - ((yVal / initialPrincipal) * chartH);
+
+        ctx.beginPath();
+        ctx.moveTo(padLeft, yPos);
+        ctx.lineTo(w - padRight, yPos);
+        ctx.stroke();
+
+        ctx.fillText(fmt(yVal), padLeft - 10, yPos + 4);
+      }
+
+      // X-Axis Ticks
+      ctx.textAlign = 'center';
+      const totalYears = totalBaseMonths / 12;
+      const xStep = totalYears > 20 ? 5 : 2;
+
+      for (let yr = 0; yr <= totalYears; yr += xStep) {
+        const xPos = padLeft + ((yr * 12) / totalBaseMonths) * chartW;
+        ctx.fillText(yr + 'y', xPos, h - 12);
+      }
+
+      function getX(m) { return padLeft + (m / totalBaseMonths) * chartW; }
+      function getY(b) { return padTop + chartH - ((b / initialPrincipal) * chartH); }
+
+      // Standard Line (Muted Gray Dashed)
+      ctx.beginPath();
+      ctx.strokeStyle = '#78716C';
+      ctx.lineWidth = 2;
+      ctx.setLineDash([5, 4]);
+      ctx.moveTo(getX(0), getY(initialPrincipal));
+      baseSchedule.forEach(pt => ctx.lineTo(getX(pt.month), getY(pt.balance)));
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      // Accelerated Line & Fill
+      ctx.beginPath();
+      ctx.strokeStyle = '#D4AF37';
+      ctx.lineWidth = 3;
+      ctx.moveTo(getX(0), getY(initialPrincipal));
+      globalSchedule.forEach(pt => ctx.lineTo(getX(pt.month), getY(pt.balance)));
+      ctx.stroke();
+
+      const lastPt = globalSchedule[globalSchedule.length - 1];
+      ctx.lineTo(getX(lastPt.month), getY(0));
+      ctx.lineTo(getX(0), getY(0));
+      ctx.closePath();
+      ctx.fillStyle = isDark ? 'rgba(212, 175, 55, 0.08)' : 'rgba(212, 175, 55, 0.14)';
+      ctx.fill();
+    }
+
+    // View 2: Capital vs. Interest
+    function drawCapitalVsInterestChart(initialPrincipal, totalBaseMonths) {
+      const canvas = document.getElementById('amortizationCanvas');
+      const ctx = canvas.getContext('2d');
+      const dpr = window.devicePixelRatio || 1;
+      
+      const rect = canvas.getBoundingClientRect();
+      canvas.width = rect.width * dpr;
+      canvas.height = rect.height * dpr;
+      ctx.scale(dpr, dpr);
+
+      const w = rect.width;
+      const h = rect.height;
+      const padLeft = 70;
+      const padRight = 24;
+      const padTop = 20;
+      const padBottom = 34;
+
+      const chartW = w - padLeft - padRight;
+      const chartH = h - padTop - padBottom;
+
+      ctx.clearRect(0, 0, w, h);
+
+      const isDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const gridColor = isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.06)';
+      const textColor = isDark ? '#A8A29E' : '#78716C';
+
+      // Find Max Value for Y-Axis
+      const maxInterest = globalSchedule.length ? globalSchedule[globalSchedule.length - 1].totalInterest : 0;
+      const maxY = Math.max(initialPrincipal, maxInterest);
+
+      // Y-Axis Ticks
+      ctx.strokeStyle = gridColor;
+      ctx.lineWidth = 1;
+      ctx.fillStyle = textColor;
+      ctx.font = '11px -apple-system, BlinkMacSystemFont, sans-serif';
+      ctx.textAlign = 'right';
+
+      const yTicks = 5;
+      for (let i = 0; i <= yTicks; i++) {
+        const yVal = (maxY / yTicks) * i;
+        const yPos = padTop + chartH - ((yVal / maxY) * chartH);
+
+        ctx.beginPath();
+        ctx.moveTo(padLeft, yPos);
+        ctx.lineTo(w - padRight, yPos);
+        ctx.stroke();
+
+        ctx.fillText(fmt(yVal), padLeft - 10, yPos + 4);
+      }
+
+      // X-Axis Ticks
+      ctx.textAlign = 'center';
+      const totalYears = totalBaseMonths / 12;
+      const xStep = totalYears > 20 ? 5 : 2;
+
+      for (let yr = 0; yr <= totalYears; yr += xStep) {
+        const xPos = padLeft + ((yr * 12) / totalBaseMonths) * chartW;
+        ctx.fillText(yr + 'y', xPos, h - 12);
+      }
+
+      function getX(m) { return padLeft + (m / totalBaseMonths) * chartW; }
+      function getY(v) { return padTop + chartH - ((v / maxY) * chartH); }
+
+      // 1. Draw Cumulative Capital (Equity Built) - Gold
+      ctx.beginPath();
+      ctx.strokeStyle = '#D4AF37';
+      ctx.lineWidth = 3;
+      ctx.moveTo(getX(0), getY(0));
+      globalSchedule.forEach(pt => ctx.lineTo(getX(pt.month), getY(pt.cumPrincipal)));
+      ctx.stroke();
+
+      // 2. Draw Cumulative Interest Paid - Crimson / Soft Red
+      ctx.beginPath();
+      ctx.strokeStyle = '#DC2626';
+      ctx.lineWidth = 2.5;
+      ctx.moveTo(getX(0), getY(0));
+      globalSchedule.forEach(pt => ctx.lineTo(getX(pt.month), getY(pt.totalInterest)));
+      ctx.stroke();
+    }
+
+    // CSV / Excel Export Generator
+    document.getElementById('btnExportCsv').addEventListener('click', () => {
+      if (!globalSchedule.length) return;
+
+      let csv = 'Payment Number,Payment,Principal,Interest,Extra Prepayment,Total Interest Paid,Remaining Balance\n';
+      globalSchedule.forEach(r => {
+        csv += `${r.month},${r.payment.toFixed(2)},${r.principal.toFixed(2)},${r.interest.toFixed(2)},${r.extra.toFixed(2)},${r.totalInterest.toFixed(2)},${r.balance.toFixed(2)}\n`;
+      });
+
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = 'PhiAtlas_Amortization_Schedule.csv';
+      link.click();
+    });
+
+    // Recalculation Listeners
+    ['homePrice', 'downPaymentPercent', 'loanTermYears', 'interestRate', 'extraMonthly', 'lumpSumAmount', 'lumpSumMonth'].forEach(id => {
+      document.getElementById(id).addEventListener('input', calculateAmortization);
+    });
+
+    window.addEventListener('resize', () => {
+      if (globalSchedule.length) renderCurrentChart();
+    });
+
+    // Initial Execution
+    calculateAmortization();
+  </script>
+</body>
+</html>
