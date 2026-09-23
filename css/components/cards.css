@@ -1,0 +1,124 @@
+/* ==========================================================================
+   Card Components (cards.css)
+   Cohesive card models for editorial content and publication guides
+   ========================================================================== */
+
+/* Editorial Content Card (Overview / Strategy) */
+.card {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-left: 4px solid var(--color-gold);
+  border-radius: 0 8px 8px 0;
+  padding: 28px;
+  margin-bottom: 40px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+}
+
+.card h2 {
+  font-size: 16px;
+  color: var(--color-gold);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+  font-weight: 700;
+}
+
+.card ul {
+  list-style: none;
+}
+
+.card li {
+  margin-bottom: 14px;
+  font-size: 15px;
+  color: var(--text-secondary);
+  padding-left: 20px;
+  position: relative;
+  line-height: 1.6;
+}
+
+.card li::before {
+  content: "▪";
+  color: var(--color-gold);
+  position: absolute;
+  left: 0;
+  top: -1px;
+  font-size: 14px;
+}
+
+.card li:last-child {
+  margin-bottom: 0;
+}
+
+.card strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+/* Publication Guide Cards (Resources) */
+.guide-card {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.02);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.guide-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--color-gold);
+}
+
+.guide-meta-tag {
+  display: inline-block;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--color-gold);
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.guide-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.35;
+  margin-bottom: 8px;
+}
+
+.guide-description {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.guide-actions {
+  padding-top: 16px;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.guide-btn-single {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 11px 20px;
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  text-decoration: none;
+  background-color: var(--color-gold);
+  color: #1C1917;
+  border-radius: 6px;
+  transition: background-color 0.2s ease;
+}
+
+.guide-btn-single:hover {
+  background-color: #E2BC44;
+}

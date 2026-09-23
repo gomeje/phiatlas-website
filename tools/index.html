@@ -3,17 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Advisory Tools &amp; Financial Models | Phi Atlas Advisory</title>
-  <meta name="description" content="Quantitative real estate modeling tools: debt amortization accelerators, rental yield underwriters, and cost modeling frameworks.">
+  <title>Advisory Tools Matrix | Phi Atlas Advisory</title>
+  <meta name="description" content="Computational financial models and industry portal access for South Florida residential real estate investments.">
 
+  <!-- Favicon Suite -->
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-  <link rel="stylesheet" href="/css/main.css">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+
+  <!-- Decoupled Modular Stylesheets -->
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/components/launchpad.css">
 </head>
 <body>
 
   <div class="container">
+    
+    <!-- LINE 1: PERSISTENT SITE-WIDE HEADER -->
     <header>
       <nav class="header-nav">
         <a href="/" class="brand-identity" aria-label="Phi Atlas Advisory Home">
@@ -36,8 +45,7 @@
 
         <ul class="nav-links">
           <li><a href="/" class="nav-link">Overview</a></li>
-          <li><a href="/strategy" class="nav-link">Strategy</a></li>
-          <li><a href="/tools" class="nav-link active">Tools</a></li>
+          <li><a href="/strategy" class="nav-link active">Strategy</a></li>
           <li><a href="/resources" class="nav-link">Resources</a></li>
           <li><a href="/connect" class="nav-link">Connect</a></li>
         </ul>
@@ -49,45 +57,57 @@
       </nav>
     </header>
 
+    <!-- LINE 2: PERSISTENT STRATEGY SUBNAV -->
+    <nav class="subnav-bar" aria-label="Strategy Navigation">
+      <a href="/strategy" class="subnav-link">Methodology</a>
+      <a href="/tools" class="subnav-link active">Tools</a>
+    </nav>
+
+    <!-- MAIN TOOLS LAUNCHPAD -->
     <main>
-      <div style="margin-bottom: 36px;">
-        <h1 style="font-size: 26px; font-weight: 700; margin-bottom: 8px;">Advisory Tools &amp; Financial Models</h1>
-        <p class="lead-text" style="margin-bottom: 0;">
-          Explore interactive models designed to evaluate loan amortization, model capital acceleration, and underwrite acquisition cash flows.
-        </p>
+      <h1 class="page-title">Tools &amp; Interactive Engines</h1>
+      <p class="lead-text">
+        Proprietary analytical engines designed for loan amortization modeling, capital acceleration, and cash flow underwriting.
+      </p>
+
+      <div class="launchpad-matrix">
+
+        <!-- TILE 1: AMORTIZATION ENGINE (ACTIVE) -->
+        <a href="/tools/mortgage-amortization" class="fiori-tile">
+          <div class="tile-top">
+            <div class="tile-header-row">
+              <span class="tile-category">Debt Advisory</span>
+              <span class="tile-type-tag">Interactive</span>
+            </div>
+            <h2 class="tile-title">Mortgage Amortization &amp; Acceleration</h2>
+            <p class="tile-desc">Model loan amortization curves, test monthly prepayments or lump sums, calculate interest savings, and export complete schedules.</p>
+          </div>
+          <div class="tile-bottom">
+            <span>Launch Engine</span>
+            <span class="tile-action-icon">&rarr;</span>
+          </div>
+        </a>
+
+        <!-- TILE 2: CASH FLOW MODEL (IN DEVELOPMENT) -->
+        <div class="fiori-tile tile-disabled">
+          <div class="tile-top">
+            <div class="tile-header-row">
+              <span class="tile-category">Cash Flow</span>
+              <span class="tile-type-tag">In Development</span>
+            </div>
+            <h2 class="tile-title">Acquisition Yield &amp; Cash Flow</h2>
+            <p class="tile-desc">Underwrite residential income assets factoring in gross market rents, reserve allocations, and debt coverage ratios (DSCR).</p>
+          </div>
+          <div class="tile-bottom">
+            <span>Available Soon</span>
+            <span class="tile-action-icon">&bull;&bull;&bull;</span>
+          </div>
+        </div>
+
       </div>
-
-      <section class="resources-grid">
-        <!-- Tool 1: Debt Amortization -->
-        <article class="guide-card">
-          <div>
-            <span class="guide-meta-tag">Debt Management &bull; Interactive</span>
-            <h2 class="guide-title">Debt Amortization &amp; Acceleration Engine</h2>
-            <p class="guide-description">
-              Simulate standard vs. accelerated repayment curves, model recurring principal prepayments or lump-sum injections, calculate interest savings, and export complete schedules to Excel.
-            </p>
-          </div>
-          <div class="guide-actions">
-            <a href="/tools/mortgage-amortization" class="guide-btn-single">Launch Calculator</a>
-          </div>
-        </article>
-
-        <!-- Tool 2: Rental Yield & Underwriting (Next Up) -->
-        <article class="guide-card">
-          <div>
-            <span class="guide-meta-tag">Cash Flow Analysis &bull; Under Development</span>
-            <h2 class="guide-title">Acquisition Yield &amp; Cash Flow Underwriter</h2>
-            <p class="guide-description">
-              Analyze multi-unit or residential income assets by factoring in gross rents, localized operational reserves, debt service coverage (DSCR), and net capitalization rates.
-            </p>
-          </div>
-          <div class="guide-actions">
-            <a href="/tools/mortgage-amortization" class="guide-btn-single" style="background-color: transparent; border: 1px solid var(--border-subtle); color: var(--text-muted); cursor: default;">Coming Soon</a>
-          </div>
-        </article>
-      </section>
     </main>
 
+    <!-- FREC STATUTORY FOOTER -->
     <footer>
       <div class="footer-brand-strip">
         <div>
@@ -101,9 +121,10 @@
         <a href="https://phiatlas.com">phiatlas.com</a>
       </p>
       <p class="footer-compliance-text">
-        Phi Atlas Advisory is a real estate marketing and advisory entity operated by Jesus Gomez Polo, a licensed Florida Real Estate Sales Associate affiliated with Brokers, LLC[cite: 5]. All brokerage services and transactions are conducted under the supervision of Brokers, LLC in strict compliance with the Florida Real Estate Commission (FREC Rules 61J2-10.025 &amp; 61J2-10.026)[cite: 5]. Equal Housing Opportunity[cite: 5].
+        Phi Atlas Advisory is a real estate marketing and advisory entity operated by Jesus Gomez Polo, a licensed Florida Real Estate Sales Associate affiliated with Brokers, LLC. All brokerage services and transactions are conducted under the supervision of Brokers, LLC in strict compliance with the Florida Real Estate Commission (FREC Rules 61J2-10.025 &amp; 61J2-10.026). Equal Housing Opportunity.
       </p>
     </footer>
+
   </div>
 
 </body>

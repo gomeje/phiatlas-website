@@ -1,0 +1,111 @@
+/* ==========================================================================
+   Fiori Launchpad Matrix Component (launchpad.css)
+   Scoped strictly to the /tools workspace portal
+   ========================================================================== */
+
+.launchpad-matrix {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+  margin-top: 28px;
+  margin-bottom: 48px;
+}
+
+.fiori-tile {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 190px;
+  text-decoration: none;
+  color: inherit;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
+}
+
+.fiori-tile:hover:not(.tile-disabled) {
+  transform: translateY(-3px);
+  border-color: var(--color-gold);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+}
+
+.tile-top {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.tile-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tile-category {
+  font-size: 10.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--color-gold);
+}
+
+.tile-type-tag {
+  font-size: 9.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background-color: var(--bg-canvas);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-muted);
+}
+
+.tile-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.3;
+  margin-top: 4px;
+}
+
+.tile-desc {
+  font-size: 12px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin-top: 4px;
+}
+
+.tile-bottom {
+  margin-top: 18px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border-subtle);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--color-gold);
+}
+
+.tile-action-icon {
+  font-size: 13px;
+  transition: transform 0.2s ease;
+}
+
+.fiori-tile:hover:not(.tile-disabled) .tile-action-icon {
+  transform: translateX(3px);
+}
+
+.tile-disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.tile-disabled .tile-bottom {
+  color: var(--text-muted);
+}

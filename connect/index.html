@@ -6,7 +6,7 @@
   <title>Connect | Jesus Gomez Polo | Phi Atlas Advisory</title>
   <meta name="description" content="Digital business card and direct advisory consultation scheduling for Jesus Gomez Polo, Licensed Real Estate Sales Associate with Brokers, LLC.">
 
-  <!-- FAVICON & PLATFORM ASSET SUITE -->
+  <!-- Favicon Suite -->
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -14,451 +14,14 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
 
-  <style>
-    :root {
-      --color-gold: #D4AF37;
-      --color-ochre: #9C784A;
-
-      /* Light Theme (Default) */
-      --bg-canvas: #FAFAF9;
-      --bg-surface: #FFFFFF;
-      --border-subtle: #E7E5E4;
-      --border-card: #D6D3D1;
-      --text-primary: #1C1917;
-      --text-secondary: #44403C;
-      --text-muted: #78716C;
-      --logo-primary: #1C1917;
-      --btn-outline-border: #D6D3D1;
-    }
-
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --bg-canvas: #131110;
-        --bg-surface: #1C1917;
-        --border-subtle: #292524;
-        --border-card: #44403C;
-        --text-primary: #F5F5F4;
-        --text-secondary: #D6D3D1;
-        --text-muted: #A8A29E;
-        --logo-primary: #FFFFFF;
-        --btn-outline-border: #44403C;
-      }
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-      background-color: var(--bg-canvas);
-      color: var(--text-primary);
-      line-height: 1.5;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 32px 16px 48px;
-      transition: background-color 0.25s ease, color 0.25s ease;
-    }
-
-    .card-container {
-      max-width: 480px;
-      width: 100%;
-    }
-
-    .nav-back {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--color-gold);
-      text-decoration: none;
-      margin-bottom: 24px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      transition: opacity 0.2s ease;
-    }
-
-    .nav-back:hover {
-      opacity: 0.8;
-    }
-
-    .bizcard {
-      background-color: var(--bg-surface);
-      border: 1px solid var(--border-subtle);
-      border-radius: 14px;
-      overflow: hidden;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
-      margin-bottom: 24px;
-    }
-
-    .bizcard-header {
-      background: linear-gradient(135deg, #1C1917 0%, #292524 100%);
-      padding: 36px 20px 24px;
-      text-align: center;
-    }
-
-    .avatar-wrapper {
-      width: 108px;
-      height: 108px;
-      border-radius: 50%;
-      border: 3px solid var(--color-gold);
-      margin: 0 auto 16px;
-      overflow: hidden;
-      background-color: #1C1917;
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
-    }
-
-    .avatar-img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    .profile-name {
-      color: #FFFFFF;
-      font-size: 21px;
-      font-weight: 700;
-      letter-spacing: 0.5px;
-      margin-bottom: 4px;
-    }
-
-    .profile-title {
-      color: var(--color-gold);
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 1.2px;
-      font-weight: 600;
-    }
-
-    .profile-sub {
-      color: #A8A29E;
-      font-size: 12.5px;
-      margin-top: 4px;
-    }
-
-    .quick-actions {
-      display: flex;
-      justify-content: space-around;
-      padding: 20px 10px;
-      border-bottom: 1px solid var(--border-subtle);
-      background-color: var(--bg-surface);
-    }
-
-    .action-btn {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 6px;
-      text-decoration: none;
-      color: var(--text-secondary);
-      font-size: 11px;
-      font-weight: 600;
-      background: none;
-      border: none;
-      cursor: pointer;
-      font-family: inherit;
-    }
-
-    .action-circle-icon {
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      object-fit: contain;
-      display: block;
-      transition: transform 0.2s ease;
-    }
-
-    .action-btn:hover .action-circle-icon {
-      transform: translateY(-2px) scale(1.04);
-    }
-
-    .cta-container {
-      padding: 16px 20px;
-      background-color: var(--bg-surface);
-      border-bottom: 1px solid var(--border-subtle);
-    }
-
-    .btn-save-contact {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      padding: 13px;
-      background-color: var(--color-gold);
-      color: #1C1917;
-      font-size: 13px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      text-decoration: none;
-      border-radius: 6px;
-      transition: background-color 0.2s ease, transform 0.2s ease;
-    }
-
-    .btn-save-contact:hover {
-      background-color: #E2BC44;
-      transform: translateY(-1px);
-    }
-
-    .links-list {
-      padding: 16px 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .biz-link-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 12px 14px;
-      background-color: var(--bg-canvas);
-      border: 1px solid var(--border-subtle);
-      border-radius: 8px;
-      text-decoration: none;
-      color: inherit;
-      transition: all 0.2s ease;
-    }
-
-    .biz-link-row:hover {
-      border-color: var(--color-gold);
-      transform: translateX(2px);
-    }
-
-    .link-left {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-
-    .link-badge-icon {
-      width: 38px;
-      height: 38px;
-      object-fit: contain;
-      flex-shrink: 0;
-      display: block;
-    }
-
-    .link-text-title {
-      font-size: 13.5px;
-      font-weight: 600;
-      color: var(--text-primary);
-    }
-
-    .link-text-sub {
-      font-size: 11.5px;
-      color: var(--text-muted);
-      word-break: break-all;
-    }
-
-    .link-arrow {
-      color: var(--color-gold);
-      font-size: 14px;
-      font-weight: 700;
-      margin-left: 8px;
-    }
-
-    .calendar-card {
-      background-color: var(--bg-surface);
-      border: 1px solid var(--border-subtle);
-      border-left: 4px solid var(--color-gold);
-      border-radius: 0 10px 10px 0;
-      padding: 24px 20px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
-      margin-bottom: 24px;
-    }
-
-    .calendar-card h3 {
-      font-size: 15px;
-      color: var(--color-gold);
-      letter-spacing: 0.8px;
-      text-transform: uppercase;
-      font-weight: 700;
-      margin-bottom: 6px;
-    }
-
-    .calendar-card p {
-      font-size: 12.5px;
-      color: var(--text-secondary);
-      margin-bottom: 16px;
-    }
-
-    .calendar-frame-box {
-      width: 100%;
-      height: 540px;
-      border-radius: 6px;
-      border: 1px solid var(--border-subtle);
-      overflow: hidden;
-      background-color: #FFFFFF;
-    }
-
-    .calendar-frame {
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
-
-    .qr-share-card {
-      background-color: var(--bg-surface);
-      border: 1px solid var(--border-subtle);
-      border-radius: 12px;
-      padding: 28px 20px;
-      text-align: center;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
-      margin-bottom: 32px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .qr-frame-box {
-      width: 170px;
-      height: 170px;
-      padding: 10px;
-      background-color: #FFFFFF;
-      border: 1.5px solid var(--color-gold);
-      border-radius: 12px;
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
-      margin-bottom: 16px;
-    }
-
-    .qr-image {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      display: block;
-    }
-
-    .qr-title {
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--text-primary);
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-      margin-bottom: 4px;
-    }
-
-    .qr-subtitle {
-      font-size: 12px;
-      color: var(--text-muted);
-      max-width: 320px;
-    }
-
-    /* Floating QR Modal */
-    .modal-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background-color: rgba(19, 17, 16, 0.85);
-      backdrop-filter: blur(6px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 1000;
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.25s ease, visibility 0.25s ease;
-      padding: 20px;
-    }
-
-    .modal-overlay.active {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    .modal-window {
-      background-color: var(--bg-surface);
-      border: 1.5px solid var(--color-gold);
-      border-radius: 16px;
-      padding: 32px 24px 28px;
-      max-width: 340px;
-      width: 100%;
-      text-align: center;
-      position: relative;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-      transform: scale(0.92);
-      transition: transform 0.25s ease;
-    }
-
-    .modal-overlay.active .modal-window {
-      transform: scale(1);
-    }
-
-    .modal-close {
-      position: absolute;
-      top: 12px;
-      right: 14px;
-      background: none;
-      border: none;
-      font-size: 24px;
-      line-height: 1;
-      color: var(--text-muted);
-      cursor: pointer;
-      transition: color 0.2s ease;
-    }
-
-    .modal-close:hover {
-      color: var(--color-gold);
-    }
-
-    .modal-qr-frame {
-      width: 200px;
-      height: 200px;
-      margin: 0 auto 18px;
-      padding: 10px;
-      background-color: #FFFFFF;
-      border: 1px solid var(--border-subtle);
-      border-radius: 12px;
-    }
-
-    .modal-title {
-      font-size: 15px;
-      font-weight: 700;
-      color: var(--text-primary);
-      text-transform: uppercase;
-      letter-spacing: 0.6px;
-      margin-bottom: 6px;
-    }
-
-    .modal-sub {
-      font-size: 12px;
-      color: var(--text-muted);
-      line-height: 1.4;
-    }
-
-    footer {
-      border-top: 1px solid var(--border-subtle);
-      padding-top: 24px;
-      font-size: 11.5px;
-      color: var(--text-muted);
-      text-align: center;
-      line-height: 1.6;
-    }
-
-    .footer-broker-img {
-      height: 32px;
-      width: auto;
-      margin-bottom: 10px;
-      display: inline-block;
-    }
-  </style>
+  <!-- Decoupled Modular Stylesheets -->
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/components/connect.css">
 </head>
 <body>
 
-  <div class="card-container">
-    <a href="/" class="nav-back">← Back to Phi Atlas Advisory</a>
+  <div class="connect-container">
+    <a href="/" class="nav-back">&larr; Back to Phi Atlas Advisory</a>
 
     <!-- THE DIGITAL BIZCARD -->
     <div class="bizcard">
@@ -469,7 +32,7 @@
           <img src="/headshot.jpeg" alt="Jesus Gomez Polo" class="avatar-img" onerror="this.style.display='none'">
         </div>
         <h1 class="profile-name">Jesus Gomez Polo</h1>
-        <p class="profile-title">Real Estate Agent | REALTOR®</p>
+        <p class="profile-title">Real Estate Agent | REALTOR&reg;</p>
         <p class="profile-sub">Principal, Phi Atlas Advisory</p>
       </div>
 
@@ -516,7 +79,7 @@
               <div class="link-text-sub">20200 W Dixie Hwy, Ste G07, Aventura, FL 33180</div>
             </div>
           </div>
-          <span class="link-arrow">→</span>
+          <span class="link-arrow">&rarr;</span>
         </a>
 
         <a href="tel:+19543841616" class="biz-link-row">
@@ -527,7 +90,7 @@
               <div class="link-text-sub">954-384-1616</div>
             </div>
           </div>
-          <span class="link-arrow">→</span>
+          <span class="link-arrow">&rarr;</span>
         </a>
 
         <a href="https://wa.me/16577662225" target="_blank" rel="noopener" class="biz-link-row">
@@ -538,7 +101,7 @@
               <div class="link-text-sub">https://wa.me/16577662225</div>
             </div>
           </div>
-          <span class="link-arrow">→</span>
+          <span class="link-arrow">&rarr;</span>
         </a>
 
         <a href="https://phiatlas.com" class="biz-link-row">
@@ -549,7 +112,7 @@
               <div class="link-text-sub">https://phiatlas.com</div>
             </div>
           </div>
-          <span class="link-arrow">→</span>
+          <span class="link-arrow">&rarr;</span>
         </a>
 
         <a href="https://instagram.com/jesusgomezpolo" target="_blank" rel="noopener" class="biz-link-row">
@@ -560,7 +123,7 @@
               <div class="link-text-sub">https://instagram.com/jesusgomezpolo</div>
             </div>
           </div>
-          <span class="link-arrow">→</span>
+          <span class="link-arrow">&rarr;</span>
         </a>
 
         <a href="https://www.facebook.com/jegomezproperties" target="_blank" rel="noopener" class="biz-link-row">
@@ -571,7 +134,7 @@
               <div class="link-text-sub">https://facebook.com/jegomezproperties</div>
             </div>
           </div>
-          <span class="link-arrow">→</span>
+          <span class="link-arrow">&rarr;</span>
         </a>
 
         <a href="https://www.tiktok.com/@jegomezproperties" target="_blank" rel="noopener" class="biz-link-row">
@@ -582,7 +145,7 @@
               <div class="link-text-sub">https://tiktok.com/@jegomezproperties</div>
             </div>
           </div>
-          <span class="link-arrow">→</span>
+          <span class="link-arrow">&rarr;</span>
         </a>
 
         <a href="https://x.com/JeGomezReal" target="_blank" rel="noopener" class="biz-link-row">
@@ -593,7 +156,7 @@
               <div class="link-text-sub">https://x.com/JeGomezReal</div>
             </div>
           </div>
-          <span class="link-arrow">→</span>
+          <span class="link-arrow">&rarr;</span>
         </a>
 
         <a href="http://brokersllc.com" target="_blank" rel="noopener" class="biz-link-row">
@@ -604,7 +167,7 @@
               <div class="link-text-sub">http://brokersllc.com</div>
             </div>
           </div>
-          <span class="link-arrow">→</span>
+          <span class="link-arrow">&rarr;</span>
         </a>
       </div>
     </div>
@@ -632,7 +195,7 @@
     </div>
 
     <!-- FREC STATUTORY COMPLIANCE FOOTER -->
-    <footer>
+    <footer class="connect-footer">
       <img src="/broker-logo.png" alt="Brokers LLC Logo" class="footer-broker-img">
       <p><strong>Brokers, LLC</strong> &nbsp;|&nbsp; Licensed Florida Real Estate Brokerage</p>
       <p>Jesus Gomez Polo, Licensed Real Estate Sales Associate</p>
@@ -671,7 +234,6 @@
     qrBtn.addEventListener('click', openModal);
     closeBtn.addEventListener('click', closeModal);
 
-    // Close when clicking outside the window or pressing Escape
     qrModal.addEventListener('click', (e) => {
       if (e.target === qrModal) closeModal();
     });
