@@ -1,6 +1,5 @@
 /**
  * Global Presentation Formatters
- * Pure functions: numbers in -> formatted strings out.
  */
 
 const currencyFormatter = new Intl.NumberFormat('en-US', {
@@ -18,30 +17,35 @@ const currencyCentsFormatter = new Intl.NumberFormat('en-US', {
 });
 
 const percentFormatter = new Intl.NumberFormat('en-US', {
-  minimumFractionDigits: 2,
-  maximumFractionDigits: 3
+  minimumFractionDigits: 1,
+  maximumFractionDigits: 2
 });
 
 export function formatCurrency(value) {
-  if (isNaN(value) || value === null) return '$0';
-  return currencyFormatter.format(Math.round(value));
+  const num = Number(value);
+  if (!Number.isFinite(num)) return '$0';
+  return currencyFormatter.format(Math.round(num));
 }
 
 export function formatCurrencyCents(value) {
-  if (isNaN(value) || value === null) return '$0.00';
-  return currencyCentsFormatter.format(value);
+  const num = Number(value);
+  if (!Number.isFinite(num)) return '$0.00';
+  return currencyCentsFormatter.format(num);
 }
 
 export function formatPercent(value) {
-  if (isNaN(value) || value === null) return '0.00%';
-  return `${percentFormatter.format(value)}%`;
+  const num = Number(value);
+  if (!Number.isFinite(num)) return '0.0%';
+  return `${percentFormatter.format(num)}%`;
 }
 
 export function formatDuration(totalMonths) {
-  const years = Math.floor(totalMonths / 12);
-  const months = totalMonths % 12;
+  const monthsTotal = parseInt(totalMonths, 10);
+  if (!Number.isFinite(monthsTotal) || monthsTotal <= 0) return '0 Yrs';
+  const years = Math.floor(monthsTotal / 12);
+  const months = monthsTotal % 12;
 
-  if (years === 0) return `${months} mos`;
-  if (months === 0) return `${years} yrs`;
-  return `${years} yrs, ${months} mos`;
+  if (years === 0) return `${months}m`;
+  if (months === 0) return `${years} Yrs`;
+  return `${years}y ${months}m`;
 }

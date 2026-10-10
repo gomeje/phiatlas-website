@@ -1,20 +1,23 @@
 /**
  * Headless Amortization & Acceleration Model
- * Pure calculations with zero DOM or window dependencies.
  */
 
 export function calculateMonthlyPayment(principal, annualRate, termYears) {
-  if (principal <= 0 || termYears <= 0) return 0;
+  const p = Number(principal);
+  const y = Number(termYears);
+  const r = Number(annualRate);
 
-  const monthlyRate = (annualRate / 100) / 12;
-  const totalMonths = termYears * 12;
+  if (p <= 0 || y <= 0) return 0;
+
+  const monthlyRate = (r / 100) / 12;
+  const totalMonths = y * 12;
 
   if (monthlyRate === 0) {
-    return principal / totalMonths;
+    return p / totalMonths;
   }
 
   const factor = Math.pow(1 + monthlyRate, totalMonths);
-  return principal * (monthlyRate * factor) / (factor - 1);
+  return p * (monthlyRate * factor) / (factor - 1);
 }
 
 export function generateSchedule({
@@ -25,16 +28,19 @@ export function generateSchedule({
   lumpSumAmount = 0,
   lumpSumMonth = 0
 }) {
-  const baseMonthlyPayment = calculateMonthlyPayment(principal, annualRate, termYears);
-  const monthlyRate = (annualRate / 100) / 12;
-  const maxMonths = termYears * 12;
+  const p = Number(principal);
+  const r = Number(annualRate);
+  const y = Number(termYears);
+  const baseMonthlyPayment = calculateMonthlyPayment(p, r, y);
+  const monthlyRate = (r / 100) / 12;
+  const maxMonths = y * 12;
 
-  let balance = principal;
+  let balance = p;
   let totalInterestPaid = 0;
   let totalPrincipalPaid = 0;
   const rows = [];
 
-  for (let month = 1; month <= maxMonths && balance > 0; month++) {
+  for (let month = 1; month <= maxMonths && balance > 0.001; month++) {
     const interest = balance * monthlyRate;
     let scheduledPrincipal = baseMonthlyPayment - interest;
 
@@ -69,14 +75,15 @@ export function generateSchedule({
       extra,
       totalPayment,
       remainingBalance: balance,
-      cumulativeInterest: totalInterestPaid
+      cumulativeInterest: totalInterestPaid,
+      cumulativePrincipal: totalPrincipalPaid
     });
 
     if (balance === 0) break;
   }
 
   return {
-    baseMonthlyPayment,
+    monthlyPayment: baseMonthlyPayment,
     payoffMonths: rows.length,
     payoffYears: rows.length / 12,
     totalInterest: totalInterestPaid,
@@ -94,13 +101,21 @@ export function computeComparativeModel({
   lumpSumAmount = 0,
   lumpSumMonth = 0
 }) {
-  const downPaymentAmount = propertyPrice * (downPaymentPercent / 100);
-  const loanPrincipal = Math.max(0, propertyPrice - downPaymentAmount);
+  const price = Number(propertyPrice) || 0;
+  const downPct = Number(downPaymentPercent) || 0;
+  const rate = Number(annualRate) || 0;
+  const term = Number(termYears) || 30;
+  const extra = Number(extraMonthly) || 0;
+  const lumpAmt = Number(lumpSumAmount) || 0;
+  const lumpM = Number(lumpSumMonth) || 0;
+
+  const downPaymentAmount = price * (downPct / 100);
+  const loanPrincipal = Math.max(0, price - downPaymentAmount);
 
   const baseline = generateSchedule({
     principal: loanPrincipal,
-    annualRate,
-    termYears,
+    annualRate: rate,
+    termYears: term,
     extraMonthly: 0,
     lumpSumAmount: 0,
     lumpSumMonth: 0
@@ -108,11 +123,11 @@ export function computeComparativeModel({
 
   const accelerated = generateSchedule({
     principal: loanPrincipal,
-    annualRate,
-    termYears,
-    extraMonthly,
-    lumpSumAmount,
-    lumpSumMonth
+    annualRate: rate,
+    termYears: term,
+    extraMonthly: extra,
+    lumpSumAmount: lumpAmt,
+    lumpSumMonth: lumpM
   });
 
   const interestSaved = Math.max(0, baseline.totalInterest - accelerated.totalInterest);
@@ -120,21 +135,21 @@ export function computeComparativeModel({
 
   return {
     financing: {
-      propertyPrice,
+      propertyPrice: price,
       downPaymentAmount,
       loanPrincipal,
-      annualRate,
-      termYears
+      annualRate: rate,
+      termYears: term
     },
     baseline: {
-      monthlyPayment: baseline.baseMonthlyPayment,
+      monthlyPayment: baseline.monthlyPayment,
       payoffMonths: baseline.payoffMonths,
       totalInterest: baseline.totalInterest,
       totalOutlay: baseline.totalPaid,
       schedule: baseline.schedule
     },
     accelerated: {
-      monthlyPayment: baseline.baseMonthlyPayment + extraMonthly,
+      monthlyPayment: baseline.monthlyPayment + extra,
       payoffMonths: accelerated.payoffMonths,
       totalInterest: accelerated.totalInterest,
       totalOutlay: accelerated.totalPaid,

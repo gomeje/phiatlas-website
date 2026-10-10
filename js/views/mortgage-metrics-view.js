@@ -1,39 +1,69 @@
 /**
  * Mortgage Metrics View
- * Strictly consumes calculated model output and updates DOM elements.
  */
-import { formatCurrency, formatDuration } from '../utils/formatters.js';
+import { formatCurrency, formatPercent, formatDuration } from '../utils/formatters.js';
 
 export class MortgageMetricsView {
   constructor() {
-    this.basePaymentEl = document.getElementById('kpi-base-payment');
-    this.totalPaymentEl = document.getElementById('kpi-total-payment');
-    this.interestSavedEl = document.getElementById('kpi-interest-saved');
-    this.timeSavedEl = document.getElementById('kpi-time-saved');
-    this.baselineTotalInterestEl = document.getElementById('kpi-baseline-interest');
-    this.acceleratedTotalInterestEl = document.getElementById('kpi-accelerated-interest');
+    this.dispBaseMonthly = document.getElementById('dispBaseMonthly');
+    this.dispTotalMonthly = document.getElementById('dispTotalMonthly');
+    this.dispBaseTerm = document.getElementById('dispBaseTerm');
+    this.dispAccelTerm = document.getElementById('dispAccelTerm');
+    this.dispBaseInterest = document.getElementById('dispBaseInterest');
+    this.dispSavedInterest = document.getElementById('dispSavedInterest');
+
+    this.summaryPrincipal = document.getElementById('summaryPrincipal');
+    this.summaryInterest = document.getElementById('summaryInterest');
+    this.summaryTotalPaid = document.getElementById('summaryTotalPaid');
+    this.summaryCostRatio = document.getElementById('summaryCostRatio');
+
+    this.scheduleCount = document.getElementById('scheduleCount');
   }
 
   render(modelResult) {
-    const { baseline, accelerated, delta } = modelResult;
+    if (!modelResult) return;
+    const { financing, baseline, accelerated, delta } = modelResult;
 
-    if (this.basePaymentEl) {
-      this.basePaymentEl.textContent = formatCurrency(baseline.monthlyPayment);
+    // Top KPI Cards
+    if (this.dispBaseMonthly) {
+      this.dispBaseMonthly.textContent = formatCurrency(baseline.monthlyPayment);
     }
-    if (this.totalPaymentEl) {
-      this.totalPaymentEl.textContent = formatCurrency(accelerated.monthlyPayment);
+    if (this.dispTotalMonthly) {
+      this.dispTotalMonthly.textContent = formatCurrency(accelerated.monthlyPayment);
     }
-    if (this.interestSavedEl) {
-      this.interestSavedEl.textContent = formatCurrency(delta.interestSaved);
+    if (this.dispBaseTerm) {
+      this.dispBaseTerm.textContent = `${financing.termYears} Yrs`;
     }
-    if (this.timeSavedEl) {
-      this.timeSavedEl.textContent = formatDuration(delta.monthsSaved);
+    if (this.dispAccelTerm) {
+      this.dispAccelTerm.textContent = formatDuration(accelerated.payoffMonths);
     }
-    if (this.baselineTotalInterestEl) {
-      this.baselineTotalInterestEl.textContent = formatCurrency(baseline.totalInterest);
+    if (this.dispBaseInterest) {
+      this.dispBaseInterest.textContent = formatCurrency(baseline.totalInterest);
     }
-    if (this.acceleratedTotalInterestEl) {
-      this.acceleratedTotalInterestEl.textContent = formatCurrency(accelerated.totalInterest);
+    if (this.dispSavedInterest) {
+      this.dispSavedInterest.textContent = formatCurrency(delta.interestSaved);
+    }
+
+    // Capital vs Interest Summary Strip
+    if (this.summaryPrincipal) {
+      this.summaryPrincipal.textContent = formatCurrency(financing.loanPrincipal);
+    }
+    if (this.summaryInterest) {
+      this.summaryInterest.textContent = formatCurrency(accelerated.totalInterest);
+    }
+    if (this.summaryTotalPaid) {
+      this.summaryTotalPaid.textContent = formatCurrency(accelerated.totalOutlay);
+    }
+    if (this.summaryCostRatio) {
+      const ratio = financing.loanPrincipal > 0
+        ? (accelerated.totalInterest / financing.loanPrincipal) * 100
+        : 0;
+      this.summaryCostRatio.textContent = formatPercent(ratio);
+    }
+
+    // Table Footer count
+    if (this.scheduleCount) {
+      this.scheduleCount.textContent = `Total Payments: ${accelerated.schedule.length}`;
     }
   }
 }
