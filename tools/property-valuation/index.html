@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Commercial Property DCF &amp; Valuation Engine | Phi Atlas Advisory</title>
+  <meta name="description" content="Commercial real estate discounted cash flow (DCF) modeling: evaluate unlevered (FCFF) vs. levered (FCFE) cash flows, internal rate of return (IRR), equity multiples, and residual capital values.">
+
+  <!-- Favicon Suite -->
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+
+  <!-- Modular Stylesheets -->
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/components/calculator.css">
+</head>
+<body>
+
+  <div class="container">
+    
+    <!-- LINE 1: PERSISTENT SITE-WIDE HEADER -->
+    <header>
+      <nav class="header-nav">
+        <a href="/" class="brand-identity" aria-label="Phi Atlas Advisory Home">
+          <svg class="brand-mark" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <line x1="50" y1="7" x2="50" y2="93" stroke="var(--logo-primary)" stroke-width="5.0" stroke-linecap="round"/>
+            <path d="M 43.5 18.6 A 32 32 0 0 0 43.5 81.4" stroke="var(--logo-primary)" stroke-width="3.5" stroke-linecap="round"/>
+            <path d="M 56.5 18.6 A 32 32 0 0 1 56.5 81.4" stroke="var(--logo-primary)" stroke-width="3.5" stroke-linecap="round"/>
+            <path d="M 43.5 31.6 A 30 19 0 0 0 43.5 68.4" stroke="var(--color-gold)" stroke-width="2.6" stroke-linecap="round"/>
+            <path d="M 56.5 31.6 A 30 19 0 0 1 56.5 68.4" stroke="var(--color-gold)" stroke-width="2.6" stroke-linecap="round"/>
+            <line x1="20" y1="50" x2="80" y2="50" stroke="var(--color-ochre)" stroke-width="2.4" stroke-dasharray="3.2 2.4"/>
+            <circle cx="20" cy="50" r="3.0" fill="var(--logo-primary)"/>
+            <circle cx="80" cy="50" r="3.0" fill="var(--logo-primary)"/>
+            <circle cx="50" cy="50" r="4.6" fill="var(--color-gold)"/>
+          </svg>
+          <div class="brand-text">
+            <span class="brand-title">Phi Atlas</span>
+            <span class="brand-subtitle">Advisory</span>
+          </div>
+        </a>
+
+        <ul class="nav-links">
+          <li><a href="/" class="nav-link">Overview</a></li>
+          <li><a href="/strategy" class="nav-link active">Strategy</a></li>
+          <li><a href="/resources" class="nav-link">Resources</a></li>
+          <li><a href="/connect" class="nav-link">Connect</a></li>
+        </ul>
+
+        <div class="broker-header-lockup">
+          <span class="broker-header-label">Brokered By</span>
+          <img src="/broker-logo.png" alt="Brokers LLC" class="broker-logo-header">
+        </div>
+      </nav>
+    </header>
+
+    <!-- LINE 2: PERSISTENT STRATEGY SUBNAV -->
+    <nav class="subnav-bar" aria-label="Strategy Navigation">
+      <a href="/strategy" class="subnav-link">Methodology</a>
+      <a href="/tools" class="subnav-link active">Tools</a>
+    </nav>
+
+    <!-- CALCULATOR ENGINE -->
+    <main>
+      <div style="margin-bottom: 28px;">
+        <h1 style="font-size: 24px; font-weight: 700; margin-bottom: 6px;">Commercial DCF &amp; Valuation Engine</h1>
+        <p class="lead-text" style="margin-bottom: 0; font-size: 15px;">
+          Model asset-level enterprise yield (Unlevered FCF / FCFF) alongside equity sponsor yield (Levered FCF / FCFE), quantifying going-in capitalization rates, terminal residual pricing, and hurdle returns.
+        </p>
+      </div>
+
+      <div class="calc-grid">
+        
+        <!-- INPUTS PANEL -->
+        <div class="calc-panel">
+          <h2>Property &amp; Operating Assumptions</h2>
+          
+          <div class="form-group">
+            <label for="purchasePrice">Acquisition Price ($)</label>
+            <input type="number" id="purchasePrice" value="2500000" step="25000">
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+            <div class="form-group">
+              <label for="potentialGrossIncome">Year 1 Gross Income (PGI) ($)</label>
+              <input type="number" id="potentialGrossIncome" value="280000" step="5000">
+            </div>
+            <div class="form-group">
+              <label for="vacancyRate">Vacancy &amp; Credit Loss (%)</label>
+              <input type="number" id="vacancyRate" value="5.0" step="0.5" min="0" max="100">
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+            <div class="form-group">
+              <label for="opexRatio">Operating Expense Ratio (%)</label>
+              <input type="number" id="opexRatio" value="38.0" step="0.5" min="0" max="100">
+            </div>
+            <div class="form-group">
+              <label for="capitalReserves">Annual CapEx / Reserves ($)</label>
+              <input type="number" id="capitalReserves" value="8000" step="500">
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+            <div class="form-group">
+              <label for="annualRentGrowth">Annual Rent Growth (%)</label>
+              <input type="number" id="annualRentGrowth" value="3.0" step="0.25">
+            </div>
+            <div class="form-group">
+              <label for="holdPeriod">Hold Period (Years)</label>
+              <select id="holdPeriod">
+                <option value="3">3 Years</option>
+                <option value="5" selected>5 Years</option>
+                <option value="7">7 Years</option>
+                <option value="10">10 Years</option>
+              </select>
+            </div>
+          </div>
+
+          <h2 style="margin-top: 24px;">Capital Structure &amp; Exit</h2>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+            <div class="form-group">
+              <label for="ltvPercent">Loan-to-Value (LTV) (%)</label>
+              <input type="number" id="ltvPercent" value="65.0" step="1" min="0" max="95">
+            </div>
+            <div class="form-group">
+              <label for="mortgageRate">Interest Rate (%)</label>
+              <input type="number" id="mortgageRate" value="6.75" step="0.125">
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+            <div class="form-group">
+              <label for="exitCapRate">Exit Capitalization Rate (%)</label>
+              <input type="number" id="exitCapRate" value="6.25" step="0.125">
+            </div>
+            <div class="form-group">
+              <label for="unleveredDiscountRate">Asset Hurdle Rate (WACC) (%)</label>
+              <input type="number" id="unleveredDiscountRate" value="8.0" step="0.25">
+            </div>
+          </div>
+        </div>
+
+        <!-- PERFORMANCE OUTPUTS PANEL -->
+        <div class="calc-panel">
+          <h2>Investment Performance Summary</h2>
+
+          <div class="kpi-matrix">
+            <div class="kpi-card">
+              <div class="kpi-label">Going-In Cap Rate</div>
+              <div class="kpi-val" id="dispGoingInCap">0.00%</div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-label">Year 1 Net Operating Income</div>
+              <div class="kpi-val" id="dispYear1Noi">$0</div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-label">Unlevered IRR (Asset)</div>
+              <div class="kpi-val" id="dispUnleveredIrr">0.0%</div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-label">Levered IRR (Equity)</div>
+              <div class="kpi-val highlight" id="dispLeveredIrr">0.0%</div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-label">Equity Multiple (MOIC)</div>
+              <div class="kpi-val highlight" id="dispEquityMultiple">0.00x</div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-label">Yr 1 Cash-on-Cash</div>
+              <div class="kpi-val" id="dispCashOnCash">0.00%</div>
+            </div>
+          </div>
+
+          <div style="margin-top: 20px;">
+            <button id="btnExportCsv" class="btn btn-gold" style="width: 100%; border: none; cursor: pointer; padding: 12px; font-weight: 600; border-radius: 6px; background: var(--color-gold); color: #000;">
+              Export Pro Forma &amp; DCF (.CSV / Excel)
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- REGULATORY & NON-ADVISORY COMPLIANCE NOTICE -->
+      <section class="compliance-callout-card">
+        <div class="compliance-badge">Important Regulatory &amp; Financial Disclosures</div>
+        <p>
+          <strong>Informational &amp; Analytical Simulation Only:</strong> This Commercial Property DCF &amp; Valuation Engine is designed exclusively for educational, hypothetical screening, and high-level financial modeling purposes. It does not constitute a certified real estate appraisal, a formal property valuation, an underwriting commitment, or an offer of syndication/securities pursuant to SEC regulations.
+        </p>
+        <p>
+          <strong>Professional Licensing Scope:</strong> Jesus Gomez Polo is a licensed Florida Real Estate Sales Associate affiliated with Brokers, LLC, and is not a licensed Certified General Appraiser, Mortgage Loan Originator (MLO), registered investment advisor (RIA), Certified Financial Planner (CFP), or Certified Public Accountant (CPA). Nothing contained herein constitutes investment advice, tax counseling, or legal representation.
+        </p>
+        <p style="margin-bottom: 0;">
+          <strong>Model Sensitivity &amp; Projections:</strong> Discounted cash flow outputs, terminal exit capitalization prices, and internal rates of return (IRR) are forward-looking estimations dependent entirely upon user-supplied baseline parameters. They do not account for environmental liabilities, structural deferred maintenance, uncollected bad debt, local regulatory zoning changes, or future macroeconomic volatility. Investors must conduct independent due diligence with certified legal, appraisal, engineering, and tax counsel.
+        </p>
+      </section>
+
+      <!-- VISUAL ANALYSIS SUITE -->
+      <section class="chart-card">
+        <div class="chart-header">
+          <div class="chart-title-group">
+            <span class="chart-title" id="chartViewTitle">Cash Flow Trajectory</span>
+            <span class="chart-subtitle" id="chartViewSubtitle">Annual Unlevered (FCFF) vs. Levered (FCFE) Distributions</span>
+          </div>
+          <div class="chart-view-toggle">
+            <button type="button" class="toggle-btn active" id="btnViewCashFlows">Annual Distributions</button>
+            <button type="button" class="toggle-btn" id="btnViewExitCapital">Exit Capital Stack</button>
+          </div>
+        </div>
+
+        <!-- Analytical Matrix Strip -->
+        <div class="capital-interest-summary">
+          <div class="cis-item">
+            <span class="cis-label">Initial Equity Required</span>
+            <span class="cis-value" id="summaryInitialEquity">$0</span>
+          </div>
+          <div class="cis-item">
+            <span class="cis-label">Senior Debt Sized</span>
+            <span class="cis-value" id="summaryDebt">$0</span>
+          </div>
+          <div class="cis-item">
+            <span class="cis-label">Gross Exit Value</span>
+            <span class="cis-value gold" id="summaryGrossExit">$0</span>
+          </div>
+          <div class="cis-item">
+            <span class="cis-label">Net Equity At Disposition</span>
+            <span class="cis-value gold" id="summaryNetEquityExit">$0</span>
+          </div>
+        </div>
+
+        <!-- Dynamic Legend -->
+        <div class="chart-legend" id="chartLegend"></div>
+
+        <!-- 380px Canvas Frame -->
+        <div class="canvas-container">
+          <canvas id="dcfCanvas"></canvas>
+        </div>
+      </section>
+
+      <!-- PRO FORMA ANNUAL STATEMENT TABLE -->
+      <section>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <h2 style="font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px;">Pro Forma Multi-Year Cash Flow Schedule</h2>
+          <span style="font-size: 12px; color: var(--text-muted);" id="proFormaPeriodLabel">Holding Period</span>
+        </div>
+        
+        <div class="table-wrapper">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th style="text-align: left;">Line Item</th>
+                <!-- Populated dynamically across holding years -->
+              </tr>
+            </thead>
+            <tbody id="proFormaBody"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <!-- FREC FOOTER -->
+    <footer>
+      <div class="footer-brand-strip">
+        <div>
+          <p class="footer-brokerage-title">Brokers, LLC</p>
+          <p>20200 W. Dixie Hwy, Suite G-07, Aventura, FL 33180</p>
+        </div>
+        <img src="/broker-logo.png" alt="Brokers LLC Logo" class="footer-broker-logo">
+      </div>
+      <p class="footer-links">
+        Jesus Gomez Polo, Licensed Real Estate Sales Associate &nbsp;|&nbsp; 
+        <a href="https://phiatlas.com">phiatlas.com</a>
+      </p>
+      <p class="footer-compliance-text">
+        Phi Atlas Advisory is a real estate marketing, analytical, and advisory entity operated by Jesus Gomez Polo, a licensed Florida Real Estate Sales Associate affiliated with Brokers, LLC[cite: 2]. All brokerage services and real estate transactions are supervised by Brokers, LLC in accordance with Chapter 475, Florida Statutes, and FREC Rules 61J2-10.025 &amp; 61J2-10.026[cite: 2]. Jesus Gomez Polo is not a certified appraiser, commercial lender, or financial planner. Equal Housing Opportunity[cite: 2].
+      </p>
+    </footer>
+
+  </div>
+
+  <!-- APPLICATION CONTROLLER MODULE -->
+  <script type="module" src="/js/controllers/dcf-controller.js"></script>
+</body>
+</html>
