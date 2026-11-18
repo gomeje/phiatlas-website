@@ -16,45 +16,14 @@
   <!-- Decoupled Modular Stylesheets -->
   <link rel="stylesheet" href="/css/base.css">
   <link rel="stylesheet" href="/css/components/calculator.css">
+  <script src="/js/components/site-layout.js" defer></script>
 </head>
 <body>
 
   <div class="container">
     
     <!-- LINE 1: PERSISTENT SITE-WIDE HEADER -->
-    <header>
-      <nav class="header-nav">
-        <a href="/" class="brand-identity" aria-label="Phi Atlas Advisory Home">
-          <svg class="brand-mark" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <line x1="50" y1="7" x2="50" y2="93" stroke="var(--logo-primary)" stroke-width="5.0" stroke-linecap="round"/>
-            <path d="M 43.5 18.6 A 32 32 0 0 0 43.5 81.4" stroke="var(--logo-primary)" stroke-width="3.5" stroke-linecap="round"/>
-            <path d="M 56.5 18.6 A 32 32 0 0 1 56.5 81.4" stroke="var(--logo-primary)" stroke-width="3.5" stroke-linecap="round"/>
-            <path d="M 43.5 31.6 A 30 19 0 0 0 43.5 68.4" stroke="var(--color-gold)" stroke-width="2.6" stroke-linecap="round"/>
-            <path d="M 56.5 31.6 A 30 19 0 0 1 56.5 68.4" stroke="var(--color-gold)" stroke-width="2.6" stroke-linecap="round"/>
-            <line x1="20" y1="50" x2="80" y2="50" stroke="var(--color-ochre)" stroke-width="2.4" stroke-dasharray="3.2 2.4"/>
-            <circle cx="20" cy="50" r="3.0" fill="var(--logo-primary)"/>
-            <circle cx="80" cy="50" r="3.0" fill="var(--logo-primary)"/>
-            <circle cx="50" cy="50" r="4.6" fill="var(--color-gold)"/>
-          </svg>
-          <div class="brand-text">
-            <span class="brand-title">Phi Atlas</span>
-            <span class="brand-subtitle">Advisory</span>
-          </div>
-        </a>
-
-        <ul class="nav-links">
-          <li><a href="/" class="nav-link">Overview</a></li>
-          <li><a href="/strategy" class="nav-link active">Strategy</a></li>
-          <li><a href="/resources" class="nav-link">Resources</a></li>
-          <li><a href="/connect" class="nav-link">Connect</a></li>
-        </ul>
-
-        <div class="broker-header-lockup">
-          <span class="broker-header-label">Brokered By</span>
-          <img src="/broker-logo.png" alt="Brokers LLC" class="broker-logo-header">
-        </div>
-      </nav>
-    </header>
+    <site-header></site-header>
 
     <!-- LINE 2: PERSISTENT STRATEGY SUBNAV -->
     <nav class="subnav-bar" aria-label="Strategy Navigation">
@@ -244,22 +213,7 @@
     </main>
 
     <!-- FREC FOOTER -->
-    <footer>
-      <div class="footer-brand-strip">
-        <div>
-          <p class="footer-brokerage-title">Brokers, LLC</p>
-          <p>20200 W. Dixie Hwy, Suite G-07, Aventura, FL 33180</p>
-        </div>
-        <img src="/broker-logo.png" alt="Brokers LLC Logo" class="footer-broker-logo">
-      </div>
-      <p class="footer-links">
-        Jesus Gomez Polo, Licensed Real Estate Sales Associate &nbsp;|&nbsp; 
-        <a href="https://phiatlas.com">phiatlas.com</a>
-      </p>
-      <p class="footer-compliance-text">
-        Phi Atlas Advisory is a real estate marketing, analytical, and advisory entity operated by Jesus Gomez Polo, a licensed Florida Real Estate Sales Associate affiliated with Brokers, LLC[cite: 2]. All brokerage services and real estate transactions are supervised by Brokers, LLC in accordance with Chapter 475, Florida Statutes, and FREC Rules 61J2-10.025 &amp; 61J2-10.026[cite: 2]. Jesus Gomez Polo is not a licensed mortgage broker, lender, or certified financial planner. Equal Housing Opportunity[cite: 2].
-      </p>
-    </footer>
+    <site-footer></site-footer>
 
   </div>
 

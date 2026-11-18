@@ -3,116 +3,51 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Company Listings | Phi Atlas</title>
+  <title>Company Listings | Phi Atlas Advisory</title>
+  <meta name="description" content="Active market inventory represented directly by Brokers, LLC across South Florida's prime residential and luxury sectors.">
 
-  <!-- Favicons -->
+  <!-- Favicon Suite -->
+  <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-  <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
-  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
 
-  <!-- Core Global Styles -->
+  <!-- Core External Stylesheets -->
   <link rel="stylesheet" href="/css/base.css">
-  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/components/listings.css">
+  <script src="/js/components/site-layout.js" defer></script>
 </head>
-<body style="margin: 0; padding: 0; background-color: #f8f9fa; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; color: #1a1d20; -webkit-font-smoothing: antialiased;">
+<body>
 
-  <!-- Global Shared Column Wrapper: Constrains Header, Content, and Footer to the exact same width -->
-  <div style="max-width: 920px; margin: 0 auto; padding: 0 1.5rem; box-sizing: border-box;">
+  <div class="container">
+    
+    <!-- SHARED HEADER -->
+    <site-header></site-header>
 
-    <!-- ====================================================================
-         1. GLOBAL HEADER: Identical lockup and margins to Home Page
-         ==================================================================== -->
-    <header style="width: 100%; padding: 2.25rem 0 1.75rem 0; display: flex; flex-direction: row; align-items: center; justify-content: space-between; box-sizing: border-box;">
-      
-      <!-- Left Column: Phi Atlas Brand Lockup -->
-      <a href="/index.html" style="display: flex; flex-direction: row; align-items: center; gap: 0.85rem; text-decoration: none; color: inherit; flex-shrink: 0;">
-        <img src="/1_light-phi-atlas.svg" alt="Phi Atlas" style="width: 38px; height: 38px; object-fit: contain; display: block;">
-        <div style="display: flex; flex-direction: column; justify-content: center;">
-          <span style="font-size: 1.05rem; font-weight: 700; letter-spacing: 0.08em; color: #1a1d20; line-height: 1.15;">PHI ATLAS</span>
-          <span style="font-size: 0.65rem; font-weight: 600; letter-spacing: 0.16em; color: #c59b27; line-height: 1.15; margin-top: 3px;">ADVISORY</span>
-        </div>
-      </a>
+    <!-- MAIN CONTENT -->
+    <main>
+      <span class="listings-eyebrow">Brokerage Representation</span>
+      <h1 class="page-title">Company Listings</h1>
+      <p class="lead-text">
+        Active market inventory represented directly by <strong>Brokers, LLC</strong> across South Florida's prime residential and luxury sectors.
+      </p>
 
-      <!-- Center Column: Navigation Links -->
-      <nav style="display: flex; flex-direction: row; align-items: center; justify-content: center; gap: 1.65rem;">
-        <a href="/index.html" style="font-size: 0.8rem; font-weight: 600; letter-spacing: 0.08em; text-decoration: none; color: #4a5568;">OVERVIEW</a>
-        <a href="/strategy/index.html" style="font-size: 0.8rem; font-weight: 600; letter-spacing: 0.08em; text-decoration: none; color: #4a5568;">STRATEGY</a>
-        <a href="/tools/index.html" style="font-size: 0.8rem; font-weight: 600; letter-spacing: 0.08em; text-decoration: none; color: #4a5568;">TOOLS</a>
-        <a href="/resources/index.html" style="font-size: 0.8rem; font-weight: 600; letter-spacing: 0.08em; text-decoration: none; color: #4a5568;">RESOURCES</a>
-        <a href="/listings/index.html" style="font-size: 0.8rem; font-weight: 700; letter-spacing: 0.08em; text-decoration: none; color: #c59b27;">LISTINGS</a>
-        <a href="/connect/index.html" style="font-size: 0.8rem; font-weight: 600; letter-spacing: 0.08em; text-decoration: none; color: #4a5568;">CONNECT</a>
-      </nav>
-
-      <!-- Right Column: Brokered By Badge + Logo -->
-      <div style="display: flex; flex-direction: column; align-items: flex-end; justify-content: center; flex-shrink: 0; text-align: right;">
-        <span style="font-size: 0.62rem; font-weight: 600; letter-spacing: 0.1em; color: #718096; text-transform: uppercase; margin-bottom: 3px;">BROKERED BY</span>
-        <img src="/broker-logo.png" alt="Brokers, LLC" style="height: 30px; width: auto; max-width: 160px; object-fit: contain; display: block;">
-      </div>
-
-    </header>
-
-    <!-- ====================================================================
-         2. MAIN CONTENT AREA: Aligned precisely to the Header boundaries
-         ==================================================================== -->
-    <main style="width: 100%; padding: 2rem 0 4rem 0; box-sizing: border-box;">
-      
-      <!-- Lead Statement Section -->
-      <section style="margin-bottom: 2rem;">
-        <span style="display: inline-block; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #c59b27; margin-bottom: 0.65rem;">
-          BROKERAGE REPRESENTATION
-        </span>
-        <h1 style="font-size: 2.15rem; font-weight: 700; letter-spacing: -0.02em; color: #1a1d20; margin: 0 0 0.85rem 0; line-height: 1.2;">
-          Company Listings
-        </h1>
-        <p style="font-size: 1.05rem; color: #4a5568; line-height: 1.65; margin: 0;">
-          Active market inventory represented directly by <strong>Brokers, LLC</strong> across South Florida's prime residential and luxury sectors.
-        </p>
-      </section>
-
-      <!-- Matrix MLS Gallery Card Container -->
-      <section style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);">
-        <div style="width: 100%; height: 1100px; overflow: hidden; position: relative; background: #ffffff;">
+      <section class="idx-frame-card">
+        <div class="idx-viewport">
           <iframe 
             src="https://sef.mlsmatrix.com/Matrix/public/IDX.aspx?idx=9c6c2082" 
             title="Brokers LLC Active MLS Listings" 
             loading="lazy" 
-            style="width: 100%; height: 1165px; border: none; display: block; background: #ffffff; margin-top: -62px;"
             allowfullscreen>
           </iframe>
         </div>
       </section>
-
     </main>
 
-    <!-- ====================================================================
-         3. GLOBAL FOOTER: Aligned precisely to the Header boundaries
-         ==================================================================== -->
-    <footer style="width: 100%; padding: 3rem 0 4rem 0; border-top: 1px solid #e2e8f0; box-sizing: border-box; display: flex; flex-direction: row; align-items: flex-start; justify-content: space-between; gap: 2.5rem;">
-      
-      <!-- Footer Left Column: Identity & Legal Compliance -->
-      <div style="flex: 1; min-width: 280px; max-width: 680px;">
-        <div style="font-size: 0.95rem; font-weight: 700; color: #1a1d20; letter-spacing: 0.02em; margin-bottom: 0.25rem;">
-          BROKER'S, LLC
-        </div>
-        <div style="font-size: 0.85rem; color: #718096; margin-bottom: 0.75rem;">
-          20200 W. Dixie Hwy, Suite G-07, Aventura, FL 33180
-        </div>
-        <div style="font-size: 0.85rem; color: #4a5568; margin-bottom: 1rem;">
-          Jesus Gomez Polo, Licensed Real Estate Sales Associate | <a href="/index.html" style="color: #c59b27; text-decoration: none; font-weight: 500;">phiatlas.com</a>
-        </div>
-        <p style="font-size: 0.72rem; line-height: 1.55; color: #a0aec0; margin: 0;">
-          Phi Atlas Advisory is a real estate marketing and advisory entity operated by Jesus Gomez Polo, a licensed Florida Real Estate Sales Associate affiliated with Brokers, LLC. All brokerage services and transactions are conducted under the supervision of Brokers, LLC in strict compliance with the Florida Real Estate Commission (FREC Rules 61J2-10.025 &amp; 61J2-10.026). Equal Housing Opportunity.
-        </p>
-      </div>
-
-      <!-- Footer Right Column: Secondary Broker Logo -->
-      <div style="flex-shrink: 0; display: flex; align-items: flex-start;">
-        <img src="/broker-logo.png" alt="Brokers, LLC" style="width: 150px; height: auto; object-fit: contain; display: block;">
-      </div>
-
-    </footer>
+    <!-- SHARED FREC COMPLIANCE FOOTER -->
+    <site-footer></site-footer>
 
   </div>
 
